@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<style>
+    /* Global Styles */
+    :root {
+        --primary: #3498db;
+        --secondary: #2ecc71;
+        --accent: #e74c3c;
+        --dark: #2c3e50;
+        --light: #ecf0f1;
+        --cbse: #f1c40f;
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    body {
+        line-height: 1.6;
+        color: #333;
+        background-color: #f9f9f9;
+    }
+
+    a {
+        text-decoration: none;
+        color: var(--primary);
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: var(--primary);
+        color: white;
+        border-radius: 5px;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+        transform: translateY(-2px);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+    }
+
+    /* Header Styles */
+    header {
+        background-color: white;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        position: fixed;
+        width: 100%;
+        top: 0;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 15px 5%;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+    }
+
+    .logo {
+        width: 50px;
+        height: 50px;
+        margin-right: 15px;
+    }
+
+    header h1 {
+        color: var(--dark);
+        font-size: 1.8rem;
+    }
+
+    nav ul {
+        display: flex;
+        list-style: none;
+    }
+
+    nav ul li {
+        margin-left: 30px;
+    }
+
+    nav ul li a {
+        color: var(--dark);
+        font-weight: 600;
+        transition: color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+        color: var(--primary);
+    }
+
+    /* Subject Hero Section */
+    .subject-hero {
+        padding: 150px 0 80px;
+        text-align: center;
+        color: white;
+    }
+
+    .cbse-hero {
+        background: linear-gradient(135deg, var(--cbse), #f39c12);
+    }
+
+    .subject-hero-content h2 {
+        font-size: 3rem;
+        margin-bottom: 20px;
+    }
+
+    .subject-hero-content p {
+        font-size: 1.2rem;
+        max-width: 700px;
+        margin: 0 auto;
+    }
+
+    /* Subject Content Section */
+    .subject-content {
+        padding: 60px 0;
+        background-color: white;
+    }
+
+    .subject-overview {
+        margin-bottom: 50px;
+    }
+
+    .subject-overview h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+        color: var(--dark);
+    }
+
+    .subject-overview p {
+        margin-bottom: 15px;
+        font-size: 1.1rem;
+    }
+
+    .subject-overview ul {
+        margin-left: 20px;
+        margin-bottom: 20px;
+    }
+
+    .subject-overview ul li {
+        margin-bottom: 8px;
+    }
+
+    /* Categories Grid */
+    .subject-categories h3 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--dark);
+    }
+
+    .category-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .category-card {
+        background-color: var(--light);
+        padding: 25px;
+        border-radius: 8px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    .category-card h4 {
+        font-size: 1.3rem;
+        margin-bottom: 15px;
+        color: var(--dark);
+    }
+
+    .category-card p {
+        margin-bottom: 15px;
+        color: #666;
+    }
+
+    .category-card ul {
+        list-style-position: inside;
+    }
+
+    .category-card ul li {
+        margin-bottom: 8px;
+        color: #555;
+    }
+
+    /* Highlights Grid */
+    .subject-highlights h3 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--dark);
+    }
+
+    .highlight-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .highlight-card {
+        text-align: center;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        padding: 20px;
+        transition: transform 0.3s ease;
+    }
+
+    .highlight-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .highlight-card img {
+        width: 150px;
+        height: 200px;
+        object-fit: cover;
+        margin-bottom: 15px;
+        border-radius: 5px;
+    }
+
+    .highlight-card h4 {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+        color: var(--dark);
+    }
+
+    .highlight-card p {
+        margin-bottom: 15px;
+        color: #666;
+        font-size: 0.95rem;
+    }
+
+    /* Links Grid */
+    .subject-links h3 {
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        color: var(--dark);
+    }
+
+    .links-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+    }
+
+    .link-card {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 30px 20px;
+        background-color: var(--light);
+        border-radius: 8px;
+        transition: all 0.3s ease;
+    }
+
+    .link-card:hover {
+        background-color: var(--primary);
+        color: white;
+    }
+
+    .link-card i {
+        font-size: 2rem;
+        margin-bottom: 15px;
+    }
+
+    .link-card span {
+        font-size: 1.1rem;
+        font-weight: 600;
+    }
+
+    /* Footer Styles */
+    footer {
+        background-color: var(--dark);
+        color: white;
+        padding: 50px 0 0;
+    }
+
+    .footer-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 30px;
+    }
+
+    .footer-section h3 {
+        font-size: 1.3rem;
+        margin-bottom: 20px;
+        position: relative;
+        padding-bottom: 10px;
+    }
+
+    .footer-section h3::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 50px;
+        height: 2px;
+        background-color: var(--primary);
+    }
+
+    .footer-section ul {
+        list-style: none;
+    }
+
+    .footer-section ul li {
+        margin-bottom: 10px;
+    }
+
+    .footer-section ul li a {
+        color: #bbb;
+        transition: color 0.3s ease;
+    }
+
+    .footer-section ul li a:hover {
+        color: white;
+    }
+
+    .social-icons {
+        display: flex;
+        gap: 15px;
+    }
+
+    .social-icons a {
+        color: white;
+        font-size: 1.2rem;
+        transition: color 0.3s ease;
+    }
+
+    .social-icons a:hover {
+        color: var(--primary);
+    }
+
+    .footer-bottom {
+        text-align: center;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        color: #bbb;
+        font-size: 0.9rem;
+    }
+
+    /* Responsive Styles */
+    @media (max-width: 768px) {
+        header {
+            flex-direction: column;
+            padding: 15px;
+        }
+        
+        nav ul {
+            margin-top: 15px;
+        }
+        
+        nav ul li {
+            margin-left: 15px;
+        }
+        
+        .subject-hero {
+            padding: 120px 0 60px;
+        }
+
+        .subject-hero-content h2 {
+            font-size: 2.2rem;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .subject-hero-content h2 {
+            font-size: 1.8rem;
+        }
+
+        .subject-overview h3, 
+        .subject-categories h3, 
+        .subject-highlights h3, 
+        .subject-links h3 {
+            font-size: 1.5rem;
+        }
+    }
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CBSE Resources | SOSE Libraries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        /* All the same CSS as in the main file */
+        /* (Copy the entire style section from the main file here) */
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/50" alt="SOSE Logo" class="logo">
+            <h1>SOSE Libraries</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#subjects">Subjects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="subject-hero cbse-hero">
+        <div class="subject-hero-content">
+            <h2>CBSE Resources</h2>
+            <p>Access our extensive collection of Central Board of Secondary Education materials</p>
+        </div>
+    </section>
+
+    <section class="subject-content">
+        <div class="container">
+            <div class="subject-overview">
+                <h3>About CBSE Collection</h3>
+                <p>Our CBSE (Central Board of Secondary Education) section is one of our most comprehensive collections, serving students from primary to senior secondary levels. We maintain a complete set of NCERT textbooks along with a wide range of supplementary materials.</p>
+                <p>Key aspects of our CBSE collection:</p>
+                <ul>
+                    <li>Complete NCERT textbooks for all classes (1-12)</li>
+                    <li>NCERT exemplar problems with solutions</li>
+                    <li>Reference books by renowned publishers</li>
+                    <li>Competitive exam preparation materials</li>
+                    <li>Sample papers and previous years' question papers</li>
+                </ul>
+                <p>The collection is organized by subject and class for easy navigation. We also have special sections for competitive exam preparation (NTSE, Olympiads, JEE/NEET foundation).</p>
+            </div>
+
+            <div class="subject-categories">
+                <h3>CBSE Collection Highlights</h3>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <h4>NCERT Resources</h4>
+                        <p>The core of our CBSE collection:</p>
+                        <ul>
+                            <li>All NCERT textbooks (latest editions)</li>
+                            <li>NCERT exemplar problems</li>
+                            <li>NCERT solutions and guides</li>
+                            <li>Laboratory manuals</li>
+                            <li>Supplementary readers</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h4>Reference Books</h4>
+                        <p>Popular reference materials:</p>
+                        <ul>
+                            <li>RD Sharma (Mathematics)</li>
+                            <li>Lakhmir Singh (Science)</li>
+                            <li>Together with... series</li>
+                            <li>Oswaal question banks</li>
+                            <li>Xam Idea series</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h4>Exam Preparation</h4>
+                        <p>Resources for board exams:</p>
+                        <ul>
+                            <li>10 years solved papers</li>
+                            <li>Sample papers with marking schemes</li>
+                            <li>Chapter-wise important questions</li>
+                            <li>Revision notes and mind maps</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subject-highlights">
+                <h3>Featured CBSE Resources</h3>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <img src="https://via.placeholder.com/150x200" alt="NCERT Exemplar">
+                        <h4>NCERT Exemplar Problems</h4>
+                        <p>Complete set of exemplar problems with solutions for classes 6-12 covering all subjects.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                    <div class="highlight-card">
+                        <img src="https://via.placeholder.com/150x200" alt="CBSE Sample Papers">
+                        <h4>CBSE Sample Papers 2023-24</h4>
+                        <p>Latest sample papers with marking schemes for all subjects as per CBSE guidelines.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                    <div class="highlight-card">
+                        <img src="https://via.placeholder.com/150x200" alt="Science Lab Manual">
+                        <h4>Science Lab Manual</h4>
+                        <p>Detailed procedures, diagrams, and lab notes for all CBSE prescribed experiments.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subject-links">
+        <div class="container">
+            <h3>Quick Links</h3>
+            <div class="links-grid">
+                <a href="#" class="link-card">
+                    <i class="fas fa-book"></i>
+                    <span>CBSE Syllabus</span>
+                </a>
+                <a href
+
+               
