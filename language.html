@@ -1,0 +1,854 @@
+<!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Language Resources | SOSE Libraries</title>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+            <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+            <style>
+                /* Color Palette */
+                :root {
+                    --primary: #4361ee;  /* Vibrant blue */
+                    --secondary: #3a0ca3; /* Deep purple */
+                    --accent: #f72585;   /* Pink */
+                    --english: #4cc9f0;  /* Sky blue */
+                    --hindi: #f8961e;    /* Orange */
+                    --sanskrit: #90be6d; /* Green */
+                    --light: #f8f9fa;
+                    --dark: #212529;
+                    --success: #38b000;
+                    --warning: #ff9e00;
+                }
+        
+                /* Modern Base Styles */
+                * {
+                    margin: 0;
+                    padding: 0;
+                    box-sizing: border-box;
+                }
+        
+                body {
+                    font-family: 'Poppins', 'Segoe UI', sans-serif;
+                    line-height: 1.7;
+                    color: var(--dark);
+                    background-color: var(--light);
+                    overflow-x: hidden;
+                }
+        
+                /* Smooth scrolling */
+                html {
+                    scroll-behavior: smooth;
+                }
+        
+                /* Typography */
+                h1, h2, h3, h4 {
+                    font-weight: 700;
+                    line-height: 1.3;
+                    margin-bottom: 1rem;
+                }
+        
+                h1 { font-size: 2.5rem; }
+                h2 { font-size: 2rem; }
+                h3 { font-size: 1.75rem; }
+                h4 { font-size: 1.5rem; }
+        
+                p {
+                    margin-bottom: 1.25rem;
+                    font-size: 1.1rem;
+                    color: #495057;
+                }
+        
+                /* Header with Glass Morphism Effect */
+                header {
+                    background: rgba(255, 255, 255, 0.85);
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+                    position: fixed;
+                    width: 100%;
+                    top: 0;
+                    z-index: 1000;
+                    padding: 1rem 2rem;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    transition: all 0.3s ease;
+                }
+        
+                header.scrolled {
+                    background: rgba(67, 97, 238, 0.9);
+                    box-shadow: 0 10px 30px rgba(67, 97, 238, 0.2);
+                }
+        
+                header.scrolled nav a {
+                    color: white;
+                }
+        
+                .logo-container {
+                    display: flex;
+                    align-items: center;
+                    gap: 1rem;
+                }
+        
+                .logo {
+                    width: 50px;
+                    height: 50px;
+                    border-radius: 50%;
+                    object-fit: cover;
+                    border: 2px solid var(--primary);
+                }
+        
+                nav ul {
+                    display: flex;
+                    list-style: none;
+                    gap: 2rem;
+                }
+        
+                nav a {
+                    color: var(--dark);
+                    font-weight: 600;
+                    position: relative;
+                    padding: 0.5rem 0;
+                    transition: color 0.3s ease;
+                }
+        
+                nav a::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 0;
+                    height: 2px;
+                    background: var(--accent);
+                    transition: width 0.3s ease;
+                }
+        
+                nav a:hover::after {
+                    width: 100%;
+                }
+        
+                nav a:hover {
+                    color: var(--primary);
+                }
+        
+                /* Hero Section with Animated Gradient */
+                .subject-hero {
+                    min-height: 80vh;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    text-align: center;
+                    padding: 6rem 2rem 4rem;
+                    color: white;
+                    position: relative;
+                    overflow: hidden;
+                }
+        
+                .language-hero {
+                    background: linear-gradient(-45deg, #4361ee, #3a0ca3, #f72585, #4cc9f0);
+                    background-size: 400% 400%;
+                    animation: gradientBG 15s ease infinite;
+                }
+        
+                @keyframes gradientBG {
+                    0% { background-position: 0% 50%; }
+                    50% { background-position: 100% 50%; }
+                    100% { background-position: 0% 50%; }
+                }
+        
+                .subject-hero-content {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    position: relative;
+                    z-index: 2;
+                }
+        
+                .subject-hero h2 {
+                    font-size: 3.5rem;
+                    margin-bottom: 1.5rem;
+                    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+                }
+        
+                .subject-hero p {
+                    font-size: 1.5rem;
+                    color: rgba(255, 255, 255, 0.9);
+                    margin-bottom: 2rem;
+                }
+        
+                /* Floating Bubbles Background */
+                .bubbles {
+                    position: absolute;
+                    width: 100%;
+                    height: 100%;
+                    top: 0;
+                    left: 0;
+                    z-index: 1;
+                    overflow: hidden;
+                }
+        
+                .bubble {
+                    position: absolute;
+                    bottom: -100px;
+                    background: rgba(255, 255, 255, 0.1);
+                    border-radius: 50%;
+                    animation: rise 15s infinite ease-in;
+                }
+        
+                .bubble:nth-child(1) {
+                    width: 40px;
+                    height: 40px;
+                    left: 10%;
+                    animation-duration: 8s;
+                }
+        
+                .bubble:nth-child(2) {
+                    width: 20px;
+                    height: 20px;
+                    left: 20%;
+                    animation-duration: 5s;
+                    animation-delay: 1s;
+                }
+        
+                .bubble:nth-child(3) {
+                    width: 50px;
+                    height: 50px;
+                    left: 35%;
+                    animation-duration: 7s;
+                    animation-delay: 2s;
+                }
+        
+                .bubble:nth-child(4) {
+                    width: 80px;
+                    height: 80px;
+                    left: 50%;
+                    animation-duration: 11s;
+                    animation-delay: 0s;
+                }
+        
+                .bubble:nth-child(5) {
+                    width: 35px;
+                    height: 35px;
+                    left: 55%;
+                    animation-duration: 6s;
+                    animation-delay: 1s;
+                }
+        
+                .bubble:nth-child(6) {
+                    width: 45px;
+                    height: 45px;
+                    left: 65%;
+                    animation-duration: 8s;
+                    animation-delay: 3s;
+                }
+        
+                .bubble:nth-child(7) {
+                    width: 25px;
+                    height: 25px;
+                    left: 75%;
+                    animation-duration: 7s;
+                    animation-delay: 2s;
+                }
+        
+                .bubble:nth-child(8) {
+                    width: 80px;
+                    height: 80px;
+                    left: 80%;
+                    animation-duration: 6s;
+                    animation-delay: 1s;
+                }
+        
+                @keyframes rise {
+                    0% {
+                        bottom: -100px;
+                        transform: translateX(0);
+                    }
+                    50% {
+                        transform: translateX(100px);
+                    }
+                    100% {
+                        bottom: 1080px;
+                        transform: translateX(-200px);
+                    }
+                }
+        
+                /* Main Content Container */
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 4rem 2rem;
+                }
+        
+                /* Section Headings with Decorative Elements */
+                .section-heading {
+                    text-align: center;
+                    margin-bottom: 3rem;
+                    position: relative;
+                }
+        
+                .section-heading::after {
+                    content: '';
+                    display: block;
+                    width: 80px;
+                    height: 5px;
+                    background: linear-gradient(to right, var(--primary), var(--accent));
+                    margin: 1rem auto;
+                    border-radius: 5px;
+                }
+        
+                /* Subject Overview with Floating Animation */
+                .subject-overview {
+                    background: white;
+                    padding: 3rem;
+                    border-radius: 15px;
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+                    margin-bottom: 4rem;
+                    transition: transform 0.3s ease, box-shadow 0.3s ease;
+                }
+        
+                .subject-overview:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.15);
+                }
+        
+                .subject-overview ul {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 1rem;
+                    margin: 2rem 0;
+                }
+        
+                .subject-overview li {
+                    background: rgba(67, 97, 238, 0.05);
+                    padding: 1rem;
+                    border-radius: 8px;
+                    border-left: 4px solid var(--primary);
+                    transition: all 0.3s ease;
+                }
+        
+                .subject-overview li:hover {
+                    background: rgba(67, 97, 238, 0.1);
+                    transform: translateX(5px);
+                }
+        
+                /* Category Grid with Color Coding */
+                .category-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+                    gap: 2rem;
+                    margin: 3rem 0;
+                }
+        
+                .category-card {
+                    background: white;
+                    border-radius: 15px;
+                    padding: 2rem;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+                    transition: all 0.3s ease;
+                    border-top: 5px solid;
+                }
+        
+                .category-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+                }
+        
+                .english-card {
+                    border-color: var(--english);
+                }
+        
+                .hindi-card {
+                    border-color: var(--hindi);
+                }
+        
+                .sanskrit-card {
+                    border-color: var(--sanskrit);
+                }
+        
+                .category-card h4 {
+                    font-size: 1.5rem;
+                    margin-bottom: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                }
+        
+                .english-card h4::before {
+                    content: '\f1fa';
+                    font-family: 'Font Awesome 6 Free';
+                    font-weight: 900;
+                    color: var(--english);
+                    margin-right: 0.75rem;
+                }
+        
+                .hindi-card h4::before {
+                    content: '\f02d';
+                    font-family: 'Font Awesome 6 Free';
+                    font-weight: 900;
+                    color: var(--hindi);
+                    margin-right: 0.75rem;
+                }
+        
+                .sanskrit-card h4::before {
+                    content: '\f518';
+                    font-family: 'Font Awesome 6 Free';
+                    font-weight: 900;
+                    color: var(--sanskrit);
+                    margin-right: 0.75rem;
+                }
+        
+                .category-card ul {
+                    list-style: none;
+                }
+        
+                .category-card li {
+                    padding: 0.75rem 0;
+                    border-bottom: 1px dashed #eee;
+                    display: flex;
+                    align-items: center;
+                }
+        
+                .category-card li::before {
+                    content: '\f054';
+                    font-family: 'Font Awesome 6 Free';
+                    font-weight: 900;
+                    font-size: 0.7rem;
+                    margin-right: 0.75rem;
+                    color: var(--primary);
+                }
+        
+                /* Highlight Cards with 3D Effect */
+                .highlight-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                    gap: 2rem;
+                    margin: 3rem 0;
+                }
+        
+                .highlight-card {
+                    background: white;
+                    border-radius: 15px;
+                    overflow: hidden;
+                    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                    transition: all 0.3s ease;
+                    position: relative;
+                }
+        
+                .highlight-card::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(135deg, rgba(67, 97, 238, 0.1), rgba(247, 37, 133, 0.1));
+                    z-index: 1;
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                }
+        
+                .highlight-card:hover::before {
+                    opacity: 1;
+                }
+        
+                .highlight-card:hover {
+                    transform: translateY(-10px) scale(1.02);
+                    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+                }
+        
+                .highlight-card img {
+                    width: 100%;
+                    height: 250px;
+                    object-fit: cover;
+                    transition: transform 0.5s ease;
+                }
+        
+                .highlight-card:hover img {
+                    transform: scale(1.1);
+                }
+        
+                .highlight-content {
+                    padding: 1.5rem;
+                    position: relative;
+                    z-index: 2;
+                    background: white;
+                }
+        
+                .highlight-card h4 {
+                    color: var(--dark);
+                    margin-bottom: 0.75rem;
+                }
+        
+                .highlight-card p {
+                    color: #6c757d;
+                    margin-bottom: 1.5rem;
+                    font-size: 1rem;
+                }
+        
+                /* Button Styles */
+                .btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 0.75rem 1.5rem;
+                    border-radius: 50px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 1px;
+                    font-size: 0.9rem;
+                    transition: all 0.3s ease;
+                    border: none;
+                    cursor: pointer;
+                    position: relative;
+                    overflow: hidden;
+                    z-index: 1;
+                }
+        
+                .btn-primary {
+                    background: linear-gradient(to right, var(--primary), var(--secondary));
+                    color: white;
+                    box-shadow: 0 5px 15px rgba(67, 97, 238, 0.4);
+                }
+        
+                .btn-primary:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 8px 25px rgba(67, 97, 238, 0.6);
+                    color: white;
+                }
+        
+                .btn-primary::before {
+                    content: '';
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    background: linear-gradient(to right, var(--secondary), var(--primary));
+                    opacity: 0;
+                    transition: opacity 0.3s ease;
+                    z-index: -1;
+                }
+        
+                .btn-primary:hover::before {
+                    opacity: 1;
+                }
+        
+                /* Quick Links Section */
+                .subject-links {
+                    background: linear-gradient(135deg, rgba(67, 97, 238, 0.03), rgba(247, 37, 133, 0.03));
+                    padding: 4rem 0;
+                    margin-top: 3rem;
+                }
+        
+                .links-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+                    gap: 1.5rem;
+                    margin-top: 2rem;
+                }
+        
+                .link-card {
+                    background: white;
+                    border-radius: 15px;
+                    padding: 2rem 1.5rem;
+                    text-align: center;
+                    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+                    transition: all 0.3s ease;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                }
+        
+                .link-card:hover {
+                    transform: translateY(-10px);
+                    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+                    background: linear-gradient(135deg, var(--primary), var(--secondary));
+                    color: white;
+                }
+        
+                .link-card:hover i {
+                    color: white;
+                    transform: scale(1.2);
+                }
+        
+                .link-card i {
+                    font-size: 2.5rem;
+                    margin-bottom: 1.5rem;
+                    color: var(--primary);
+                    transition: all 0.3s ease;
+                }
+        
+                .link-card span {
+                    font-weight: 600;
+                    font-size: 1.1rem;
+                }
+        
+                /* Footer */
+                footer {
+                    background: linear-gradient(135deg, var(--secondary), var(--dark));
+                    color: white;
+                    padding: 4rem 0 0;
+                }
+        
+                .footer-content {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 3rem;
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    padding: 0 2rem;
+                }
+        
+                .footer-section {
+                    margin-bottom: 2rem;
+                }
+        
+                .footer-section h3 {
+                    color: white;
+                    margin-bottom: 1.5rem;
+                    position: relative;
+                    padding-bottom: 0.75rem;
+                }
+        
+                .footer-section h3::after {
+                    content: '';
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    width: 50px;
+                    height: 3px;
+                    background: var(--accent);
+                    border-radius: 3px;
+                }
+        
+                .footer-section ul {
+                    list-style: none;
+                }
+        
+                .footer-section li {
+                    margin-bottom: 0.75rem;
+                }
+        
+                .footer-section a {
+                    color: rgba(255, 255, 255, 0.8);
+                    transition: color 0.3s ease;
+                    display: flex;
+                    align-items: center;
+                }
+        
+                .footer-section a:hover {
+                    color: white;
+                    transform: translateX(5px);
+                }
+        
+                .footer-section a::before {
+                    content: '\f054';
+                    font-family: 'Font Awesome 6 Free';
+                    font-weight: 900;
+                    font-size: 0.7rem;
+                    margin-right: 0.75rem;
+                    color: var(--accent);
+                    transition: all 0.3s ease;
+                }
+        
+                .footer-section a:hover::before {
+                    transform: translateX(5px);
+                }
+        
+                .social-icons {
+                    display: flex;
+                    gap: 1rem;
+                    margin-top: 1.5rem;
+                }
+        
+                .social-icons a {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background: rgba(255, 255, 255, 0.1);
+                    color: white;
+                    transition: all 0.3s ease;
+                }
+        
+                .social-icons a:hover {
+                    background: var(--accent);
+                    transform: translateY(-5px);
+                }
+        
+                .footer-bottom {
+                    text-align: center;
+                    padding: 2rem 0;
+                    margin-top: 2rem;
+                    border-top: 1px solid rgba(255, 255, 255
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Language Resources | SOSE Libraries</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo-container">
+            <img src="https://via.placeholder.com/50" alt="SOSE Logo" class="logo">
+            <h1>SOSE Libraries</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#about">About</a></li>
+                <li><a href="index.html#subjects">Subjects</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="subject-hero language-hero">
+        <div class="subject-hero-content">
+            <h2>Language Learning Resources</h2>
+            <p>Explore our comprehensive collection of materials for English, Hindi, Sanskrit and other languages</p>
+        </div>
+    </section>
+
+    <section class="subject-content">
+        <div class="container">
+            <div class="subject-overview">
+                <h3>About Our Language Collection</h3>
+                <p>The Language Resources section of our library contains materials to help students master various languages. Our collection supports learning from beginner to advanced levels.</p>
+                <p>We provide:</p>
+                <ul>
+                    <li>Grammar textbooks and workbooks</li>
+                    <li>Literature collections and readers</li>
+                    <li>Vocabulary builders and dictionaries</li>
+                    <li>Audio resources for pronunciation</li>
+                    <li>Exam preparation materials</li>
+                </ul>
+                <p>Our language collection is continuously updated to include the most effective learning materials and contemporary literature.</p>
+            </div>
+
+            <div class="subject-categories">
+                <h3>Key Features of Our Language Collection</h3>
+                <div class="category-grid">
+                    <div class="category-card">
+                        <h4>English Resources</h4>
+                        <p>Comprehensive materials for English language learning:</p>
+                        <ul>
+                            <li>Grammar and composition guides</li>
+                            <li>Literature textbooks and readers</li>
+                            <li>Vocabulary builders</li>
+                            <li>Writing skills workbooks</li>
+                            <li>Spoken English materials</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h4>Hindi Resources</h4>
+                        <p>Materials for Hindi language mastery:</p>
+                        <ul>
+                            <li>Vyakarana (Grammar) textbooks</li>
+                            <li>Hindi literature collections</li>
+                            <li>Rachna (Composition) guides</li>
+                            <li>Vocabulary expansion tools</li>
+                            <li>Hindi poetry and prose</li>
+                        </ul>
+                    </div>
+                    <div class="category-card">
+                        <h4>Sanskrit Resources</h4>
+                        <p>Ancient language learning materials:</p>
+                        <ul>
+                            <li>Sanskrit grammar (Ashtadhyayi)</li>
+                            <li>Classical texts with translations</li>
+                            <li>Beginner to advanced readers</li>
+                            <li>Slokas and Subhashitas collections</li>
+                            <li>Sanskrit dictionaries</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="subject-highlights">
+                <h3>Popular Language Resources</h3>
+                <div class="highlight-grid">
+                    <div class="highlight-card">
+                        <img src="https://via.placeholder.com/150x200" alt="English Grammar Guide">
+                        <h4>Advanced English Grammar</h4>
+                        <p>Comprehensive guide covering all aspects of English grammar with exercises and answer key.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                    <div class="highlight-card">
+                        <img src="https://via.placeholder.com/150x200" alt="Hindi Vyakarana">
+                        <h4>Hindi Vyakarana Complete</h4>
+                        <p>Complete Hindi grammar reference with rules, examples, and practice exercises.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                    <div class="highlight-card">
+                        <img src="https://via.placeholder.com/150x200" alt="Sanskrit Reader">
+                        <h4>Sanskrit for Beginners</h4>
+                        <p>Step-by-step introduction to Sanskrit with vocabulary, grammar, and simple texts.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="subject-links">
+        <div class="container">
+            <h3>Additional Resources</h3>
+            <div class="links-grid">
+                <a href="#" class="link-card">
+                    <i class="fas fa-language"></i>
+                    <span>Language Learning Apps</span>
+                </a>
+                <a href="#" class="link-card">
+                    <i class="fas fa-headphones"></i>
+                    <span>Audio Resources</span>
+                </a>
+                <a href="#" class="link-card">
+                    <i class="fas fa-book-open"></i>
+                    <span>Online Dictionaries</span>
+                </a>
+                <a href="#" class="link-card">
+                    <i class="fas fa-video"></i>
+                    <span>Video Tutorials</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#subjects">Subjects</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Subjects</h3>
+                <ul>
+                    <li><a href="dbse.html">DBSE</a></li>
+                    <li><a href="cbse.html">CBSE</a></li>
+                    <li><a href="languages.html">Language Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Connect With Us</h3>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2023 SOSE Libraries. All Rights Reserved.</p>
+        </div>
+    </footer>
+</body>
+</html>
