@@ -1,406 +1,733 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<style>
-    /* Global Styles */
-    :root {
-        --primary: #3498db;
-        --secondary: #2ecc71;
-        --accent: #e74c3c;
-        --dark: #2c3e50;
-        --light: #ecf0f1;
-        --cbse: #f1c40f;
-    }
-
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-
-    body {
-        line-height: 1.6;
-        color: #333;
-        background-color: #f9f9f9;
-    }
-
-    a {
-        text-decoration: none;
-        color: var(--primary);
-    }
-
-    .btn {
-        display: inline-block;
-        padding: 10px 20px;
-        background-color: var(--primary);
-        color: white;
-        border-radius: 5px;
-        transition: all 0.3s ease;
-        border: none;
-        cursor: pointer;
-    }
-
-    .btn:hover {
-        background-color: #2980b9;
-        transform: translateY(-2px);
-    }
-
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 20px;
-    }
-
-    /* Header Styles */
-    header {
-        background-color: white;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        position: fixed;
-        width: 100%;
-        top: 0;
-        z-index: 1000;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 15px 5%;
-    }
-
-    .logo-container {
-        display: flex;
-        align-items: center;
-    }
-
-    .logo {
-        width: 50px;
-        height: 50px;
-        margin-right: 15px;
-    }
-
-    header h1 {
-        color: var(--dark);
-        font-size: 1.8rem;
-    }
-
-    nav ul {
-        display: flex;
-        list-style: none;
-    }
-
-    nav ul li {
-        margin-left: 30px;
-    }
-
-    nav ul li a {
-        color: var(--dark);
-        font-weight: 600;
-        transition: color 0.3s ease;
-    }
-
-    nav ul li a:hover {
-        color: var(--primary);
-    }
-
-    /* Subject Hero Section */
-    .subject-hero {
-        padding: 150px 0 80px;
-        text-align: center;
-        color: white;
-    }
-
-    .cbse-hero {
-        background: linear-gradient(135deg, var(--cbse), #f39c12);
-    }
-
-    .subject-hero-content h2 {
-        font-size: 3rem;
-        margin-bottom: 20px;
-    }
-
-    .subject-hero-content p {
-        font-size: 1.2rem;
-        max-width: 700px;
-        margin: 0 auto;
-    }
-
-    /* Subject Content Section */
-    .subject-content {
-        padding: 60px 0;
-        background-color: white;
-    }
-
-    .subject-overview {
-        margin-bottom: 50px;
-    }
-
-    .subject-overview h3 {
-        font-size: 1.8rem;
-        margin-bottom: 20px;
-        color: var(--dark);
-    }
-
-    .subject-overview p {
-        margin-bottom: 15px;
-        font-size: 1.1rem;
-    }
-
-    .subject-overview ul {
-        margin-left: 20px;
-        margin-bottom: 20px;
-    }
-
-    .subject-overview ul li {
-        margin-bottom: 8px;
-    }
-
-    /* Categories Grid */
-    .subject-categories h3 {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-        color: var(--dark);
-    }
-
-    .category-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: 30px;
-        margin-bottom: 50px;
-    }
-
-    .category-card {
-        background-color: var(--light);
-        padding: 25px;
-        border-radius: 8px;
-        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
-    }
-
-    .category-card h4 {
-        font-size: 1.3rem;
-        margin-bottom: 15px;
-        color: var(--dark);
-    }
-
-    .category-card p {
-        margin-bottom: 15px;
-        color: #666;
-    }
-
-    .category-card ul {
-        list-style-position: inside;
-    }
-
-    .category-card ul li {
-        margin-bottom: 8px;
-        color: #555;
-    }
-
-    /* Highlights Grid */
-    .subject-highlights h3 {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-        color: var(--dark);
-    }
-
-    .highlight-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 30px;
-        margin-bottom: 50px;
-    }
-
-    .highlight-card {
-        text-align: center;
-        border: 1px solid #eee;
-        border-radius: 8px;
-        padding: 20px;
-        transition: transform 0.3s ease;
-    }
-
-    .highlight-card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    }
-
-    .highlight-card img {
-        width: 150px;
-        height: 200px;
-        object-fit: cover;
-        margin-bottom: 15px;
-        border-radius: 5px;
-    }
-
-    .highlight-card h4 {
-        font-size: 1.2rem;
-        margin-bottom: 10px;
-        color: var(--dark);
-    }
-
-    .highlight-card p {
-        margin-bottom: 15px;
-        color: #666;
-        font-size: 0.95rem;
-    }
-
-    /* Links Grid */
-    .subject-links h3 {
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-        color: var(--dark);
-    }
-
-    .links-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 20px;
-    }
-
-    .link-card {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        padding: 30px 20px;
-        background-color: var(--light);
-        border-radius: 8px;
-        transition: all 0.3s ease;
-    }
-
-    .link-card:hover {
-        background-color: var(--primary);
-        color: white;
-    }
-
-    .link-card i {
-        font-size: 2rem;
-        margin-bottom: 15px;
-    }
-
-    .link-card span {
-        font-size: 1.1rem;
-        font-weight: 600;
-    }
-
-    /* Footer Styles */
-    footer {
-        background-color: var(--dark);
-        color: white;
-        padding: 50px 0 0;
-    }
-
-    .footer-content {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 30px;
-        margin-bottom: 30px;
-    }
-
-    .footer-section h3 {
-        font-size: 1.3rem;
-        margin-bottom: 20px;
-        position: relative;
-        padding-bottom: 10px;
-    }
-
-    .footer-section h3::after {
-        content: '';
-        position: absolute;
-        left: 0;
-        bottom: 0;
-        width: 50px;
-        height: 2px;
-        background-color: var(--primary);
-    }
-
-    .footer-section ul {
-        list-style: none;
-    }
-
-    .footer-section ul li {
-        margin-bottom: 10px;
-    }
-
-    .footer-section ul li a {
-        color: #bbb;
-        transition: color 0.3s ease;
-    }
-
-    .footer-section ul li a:hover {
-        color: white;
-    }
-
-    .social-icons {
-        display: flex;
-        gap: 15px;
-    }
-
-    .social-icons a {
-        color: white;
-        font-size: 1.2rem;
-        transition: color 0.3s ease;
-    }
-
-    .social-icons a:hover {
-        color: var(--primary);
-    }
-
-    .footer-bottom {
-        text-align: center;
-        padding: 20px 0;
-        border-top: 1px solid rgba(255, 255, 255, 0.1);
-        color: #bbb;
-        font-size: 0.9rem;
-    }
-
-    /* Responsive Styles */
-    @media (max-width: 768px) {
-        header {
-            flex-direction: column;
-            padding: 15px;
-        }
-        
-        nav ul {
-            margin-top: 15px;
-        }
-        
-        nav ul li {
-            margin-left: 15px;
-        }
-        
-        .subject-hero {
-            padding: 120px 0 60px;
-        }
-
-        .subject-hero-content h2 {
-            font-size: 2.2rem;
-        }
-    }
-
-    @media (max-width: 480px) {
-        .subject-hero-content h2 {
-            font-size: 1.8rem;
-        }
-
-        .subject-overview h3, 
-        .subject-categories h3, 
-        .subject-highlights h3, 
-        .subject-links h3 {
-            font-size: 1.5rem;
-        }
-    }
-</style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CBSE Resources | SOSE Libraries</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Fredoka+One&display=swap" rel="stylesheet">
     <style>
-        /* All the same CSS as in the main file */
-        /* (Copy the entire style section from the main file here) */
+        /* Global Styles */
+        :root {
+            --primary: #6C4DF6;
+            --secondary: #FF7E5F;
+            --accent: #FFD166;
+            --dark: #2D3047;
+            --light: #F8F7FF;
+            --cbse: #FF9F1C;
+            --purple: #A682FF;
+            --blue: #4CC9F0;
+            --pink: #F72585;
+            --green: #2EC4B6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, #F8F7FF 0%, #E2E1FF 100%);
+            min-height: 100vh;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--primary);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 24px;
+            background: linear-gradient(45deg, var(--primary), var(--purple));
+            color: white;
+            border-radius: 50px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(108, 77, 246, 0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(108, 77, 246, 0.4);
+        }
+
+        .btn:active {
+            transform: translateY(1px);
+        }
+
+        .btn::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--purple), var(--primary));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::after {
+            opacity: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 10px 5%;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            margin-right: 15px;
+            background: linear-gradient(45deg, var(--primary), var(--purple));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-family: 'Fredoka One', cursive;
+            box-shadow: 0 4px 12px rgba(108, 77, 246, 0.3);
+        }
+
+        header h1 {
+            color: var(--dark);
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li {
+            margin-left: 30px;
+            position: relative;
+        }
+
+        nav ul li a {
+            color: var(--dark);
+            font-weight: 600;
+            transition: color 0.3s ease;
+            padding: 5px 0;
+        }
+
+        nav ul li a:hover {
+            color: var(--primary);
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary), var(--purple));
+            border-radius: 3px;
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        /* Subject Hero Section */
+        .subject-hero {
+            padding: 180px 0 100px;
+            text-align: center;
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cbse-hero {
+            background: linear-gradient(135deg, var(--cbse), #FF6B35);
+        }
+
+        .subject-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/always-grey.png');
+            opacity: 0.1;
+        }
+
+        .subject-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .subject-hero-content h2 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            animation: fadeInUp 0.8s ease;
+        }
+
+        .subject-hero-content p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.7;
+            animation: fadeInUp 0.8s ease 0.2s both;
+        }
+
+        /* Subject Content Section */
+        .subject-content {
+            padding: 80px 0;
+            background-color: white;
+            position: relative;
+        }
+
+        .subject-content::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%23ffffff" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%23ffffff" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%23ffffff"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .subject-overview {
+            margin-bottom: 60px;
+            background: white;
+            padding: 40px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .subject-overview::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 5px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary), var(--pink));
+        }
+
+        .subject-overview h3 {
+            font-size: 2.2rem;
+            margin-bottom: 25px;
+            color: var(--dark);
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .subject-overview p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+        }
+
+        .subject-overview ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+        }
+
+        .subject-overview ul li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+            color: #555;
+        }
+
+        .subject-overview ul li::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--accent);
+            border-radius: 50%;
+        }
+
+        /* Categories Grid */
+        .subject-categories h3 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .category-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .category-card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            border-top: 5px solid var(--primary);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .category-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .category-card:nth-child(2) {
+            border-top-color: var(--secondary);
+        }
+
+        .category-card:nth-child(3) {
+            border-top-color: var(--accent);
+        }
+
+        .category-card h4 {
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .category-card p {
+            margin-bottom: 20px;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .category-card ul {
+            list-style: none;
+        }
+
+        .category-card ul li {
+            margin-bottom: 12px;
+            color: #555;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .category-card ul li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .category-card:nth-child(2) ul li::before {
+            color: var(--secondary);
+        }
+
+        .category-card:nth-child(3) ul li::before {
+            color: var(--accent);
+        }
+
+        /* Highlights Grid */
+        .subject-highlights {
+            margin-bottom: 60px;
+        }
+
+        .subject-highlights h3 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .highlight-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-bottom: 50px;
+        }
+
+        .highlight-card {
+            text-align: center;
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .highlight-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(45deg, var(--primary), var(--purple));
+        }
+
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .highlight-card img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .highlight-card:hover img {
+            transform: scale(1.05);
+        }
+
+        .highlight-card h4 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--dark);
+            font-weight: 700;
+        }
+
+        .highlight-card p {
+            margin-bottom: 20px;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.7;
+        }
+
+        /* Links Grid */
+        .subject-links h3 {
+            font-size: 2.2rem;
+            margin-bottom: 40px;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--primary), var(--pink));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-align: center;
+        }
+
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+        }
+
+        .link-card {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            background: white;
+            border-radius: 15px;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .link-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .link-card i {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, var(--primary), var(--purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            transition: all 0.3s ease;
+        }
+
+        .link-card:hover i {
+            transform: scale(1.2);
+        }
+
+        .link-card span {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .link-card:nth-child(2) i {
+            background: linear-gradient(45deg, var(--secondary), var(--accent));
+            -webkit-background-clip: text;
+        }
+
+        .link-card:nth-child(3) i {
+            background: linear-gradient(45deg, var(--pink), var(--purple));
+            -webkit-background-clip: text;
+        }
+
+        .link-card:nth-child(4) i {
+            background: linear-gradient(45deg, var(--blue), var(--green));
+            -webkit-background-clip: text;
+        }
+
+        /* Footer Styles */
+        footer {
+            background: linear-gradient(135deg, var(--dark), #1A1B2F);
+            color: white;
+            padding: 80px 0 0;
+            position: relative;
+        }
+
+        footer::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: 0;
+            width: 100%;
+            height: 100px;
+            background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1200 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none"><path d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z" fill="%232D3047" opacity=".25"/><path d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z" fill="%232D3047" opacity=".5"/><path d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z" fill="%232D3047"/></svg>');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 50px;
+        }
+
+        .footer-section {
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-section h3 {
+            font-size: 1.5rem;
+            margin-bottom: 25px;
+            position: relative;
+            padding-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: linear-gradient(45deg, var(--primary), var(--purple));
+            border-radius: 3px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul li a {
+            color: #bbb;
+            transition: all 0.3s ease;
+            display: inline-block;
+            padding: 5px 0;
+            position: relative;
+        }
+
+        .footer-section ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+
+        .footer-section ul li a:hover {
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .footer-section ul li a:hover::after {
+            width: 100%;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .social-icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background: var(--primary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 30px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .footer-bottom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--primary), transparent);
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px 10px;
+            }
+            
+            .subject-hero {
+                padding: 150px 0 80px;
+            }
+
+            .subject-hero-content h2 {
+                font-size: 2.5rem;
+            }
+
+            .subject-overview ul {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .subject-hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .subject-overview h3, 
+            .subject-categories h3, 
+            .subject-highlights h3, 
+            .subject-links h3 {
+                font-size: 1.8rem;
+            }
+
+            .category-grid,
+            .highlight-grid,
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
-    <header>
+    <header id="header">
         <div class="logo-container">
-            <img src="https://via.placeholder.com/50" alt="SOSE Logo" class="logo">
+            <div class="logo">SOSE</div>
             <h1>SOSE Libraries</h1>
         </div>
         <nav>
@@ -416,11 +743,12 @@
     <section class="subject-hero cbse-hero">
         <div class="subject-hero-content">
             <h2>CBSE Resources</h2>
-            <p>Access our extensive collection of Central Board of Secondary Education materials</p>
+            <p>Access our extensive collection of Central Board of Secondary Education materials, designed to help you excel in your academic journey</p>
+            <a href="#content" class="btn">Explore Resources</a>
         </div>
     </section>
 
-    <section class="subject-content">
+    <section class="subject-content" id="content">
         <div class="container">
             <div class="subject-overview">
                 <h3>About CBSE Collection</h3>
@@ -432,6 +760,9 @@
                     <li>Reference books by renowned publishers</li>
                     <li>Competitive exam preparation materials</li>
                     <li>Sample papers and previous years' question papers</li>
+                    <li>Interactive learning modules</li>
+                    <li>Video lecture access</li>
+                    <li>Skill development resources</li>
                 </ul>
                 <p>The collection is organized by subject and class for easy navigation. We also have special sections for competitive exam preparation (NTSE, Olympiads, JEE/NEET foundation).</p>
             </div>
@@ -441,34 +772,38 @@
                 <div class="category-grid">
                     <div class="category-card">
                         <h4>NCERT Resources</h4>
-                        <p>The core of our CBSE collection:</p>
+                        <p>The core of our CBSE collection with comprehensive materials:</p>
                         <ul>
                             <li>All NCERT textbooks (latest editions)</li>
                             <li>NCERT exemplar problems</li>
                             <li>NCERT solutions and guides</li>
                             <li>Laboratory manuals</li>
                             <li>Supplementary readers</li>
+                            <li>Digital NCERT resources</li>
                         </ul>
                     </div>
                     <div class="category-card">
                         <h4>Reference Books</h4>
-                        <p>Popular reference materials:</p>
+                        <p>Popular reference materials from top publishers:</p>
                         <ul>
                             <li>RD Sharma (Mathematics)</li>
                             <li>Lakhmir Singh (Science)</li>
                             <li>Together with... series</li>
                             <li>Oswaal question banks</li>
                             <li>Xam Idea series</li>
+                            <li>Golden guides and sample papers</li>
                         </ul>
                     </div>
                     <div class="category-card">
                         <h4>Exam Preparation</h4>
-                        <p>Resources for board exams:</p>
+                        <p>Comprehensive resources for board exams:</p>
                         <ul>
                             <li>10 years solved papers</li>
                             <li>Sample papers with marking schemes</li>
                             <li>Chapter-wise important questions</li>
                             <li>Revision notes and mind maps</li>
+                            <li>Practice workbooks</li>
+                            <li>Mock test series</li>
                         </ul>
                     </div>
                 </div>
@@ -478,21 +813,27 @@
                 <h3>Featured CBSE Resources</h3>
                 <div class="highlight-grid">
                     <div class="highlight-card">
-                        <img src="https://via.placeholder.com/150x200" alt="NCERT Exemplar">
+                        <img src="https://via.placeholder.com/150x200/6C4DF6/FFFFFF?text=NCERT+Exemplar" alt="NCERT Exemplar">
                         <h4>NCERT Exemplar Problems</h4>
-                        <p>Complete set of exemplar problems with solutions for classes 6-12 covering all subjects.</p>
+                        <p>Complete set of exemplar problems with solutions for classes 6-12 covering all subjects with detailed explanations.</p>
                         <a href="#" class="btn">View Details</a>
                     </div>
                     <div class="highlight-card">
-                        <img src="https://via.placeholder.com/150x200" alt="CBSE Sample Papers">
+                        <img src="https://via.placeholder.com/150x200/FF7E5F/FFFFFF?text=CBSE+Sample" alt="CBSE Sample Papers">
                         <h4>CBSE Sample Papers 2023-24</h4>
-                        <p>Latest sample papers with marking schemes for all subjects as per CBSE guidelines.</p>
+                        <p>Latest sample papers with marking schemes for all subjects as per CBSE guidelines and blueprint.</p>
                         <a href="#" class="btn">View Details</a>
                     </div>
                     <div class="highlight-card">
-                        <img src="https://via.placeholder.com/150x200" alt="Science Lab Manual">
+                        <img src="https://via.placeholder.com/150x200/FFD166/FFFFFF?text=Science+Lab" alt="Science Lab Manual">
                         <h4>Science Lab Manual</h4>
-                        <p>Detailed procedures, diagrams, and lab notes for all CBSE prescribed experiments.</p>
+                        <p>Detailed procedures, diagrams, and lab notes for all CBSE prescribed experiments with safety guidelines.</p>
+                        <a href="#" class="btn">View Details</a>
+                    </div>
+                    <div class="highlight-card">
+                        <img src="https://via.placeholder.com/150x200/2EC4B6/FFFFFF?text=Maths+Guide" alt="Mathematics Guide">
+                        <h4>Mathematics Guide</h4>
+                        <p>Comprehensive guide covering all concepts with solved examples, practice problems, and shortcuts.</p>
                         <a href="#" class="btn">View Details</a>
                     </div>
                 </div>
@@ -505,9 +846,74 @@
             <h3>Quick Links</h3>
             <div class="links-grid">
                 <a href="#" class="link-card">
-                    <i class="fas fa-book"></i>
+                    <i class="fas fa-book-open"></i>
                     <span>CBSE Syllabus</span>
                 </a>
-                <a href
+                <a href="#" class="link-card">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Sample Papers</span>
+                </a>
+                <a href="#" class="link-card">
+                    <i class="fas fa-video"></i>
+                    <span>Video Lectures</span>
+                </a>
+                <a href="#" class="link-card">
+                    <i class="fas fa-chalkboard-teacher"></i>
+                    <span>Online Classes</span>
+                </a>
+            </div>
+        </div>
+    </section>
 
-               
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>About Us</h3>
+                    <p>SOSE Libraries provide comprehensive educational resources for students of all levels. Our mission is to make quality learning materials accessible to everyone.</p>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">About</a></li>
+                        <li><a href="#">Subjects</a></li>
+                        <li><a href="#">Resources</a></li>
+                        <li><a href="#">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <ul>
+                        <li><i class="fas fa-map-marker-alt"></i> 123 Education St, Learning City</li>
+                        <li><i class="fas fa-phone"></i> +1 234 567 890</li>
+                        <li><i class="fas fa-envelope"></i> info@soselibraries.com</li>
+                        <li><i class="fas fa-clock"></i> Mon-Fri: 9AM - 6PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2023 SOSE Libraries. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Header scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+    </script>
+</body>
+</html>
