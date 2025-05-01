@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SOES Student Portal</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+        
+        .logo {
+            max-width: 150px;
+            margin-bottom: 20px;
+        }
+        
+        h1 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s;
+            margin-bottom: 15px;
+        }
+        
+        button:hover {
+            background-color: #2980b9;
+        }
+        
+        .info-text {
+            font-size: 13px;
+            color: #666;
+            margin: 10px 0;
+        }
+        
+        .direct-access {
+            display: block;
+            margin-top: 15px;
+            color: #3498db;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        
+        .direct-access:hover {
+            text-decoration: underline;
+        }
+        
+        .contact-form {
+            margin-top: 20px;
+            text-align: left;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #444;
+            font-size: 14px;
+        }
+        
+        input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        
+        .required {
+            color: red;
+        }
+        
+        .message {
+            margin-top: 15px;
+            padding: 10px;
+            border-radius: 4px;
+            display: none;
+        }
+        
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="https://www.sose.edu.in/images/logo.png" alt="SOES Logo" class="logo">
+        <h1>Student Portal</h1>
+        
+        <button id="loginButton">Login to SOES</button>
+        
+        <p class="info-text">
+            If you fill this form, the school can know how many students are visiting the website.
+        </p>
+        
+        <a href="https://infomo-education.github.io/soselibrary/" class="direct-access">
+            If you don't want to share information, you can directly access the website
+        </a>
+        
+        <div id="contactForm" class="contact-form">
+            <div class="form-group">
+                <label for="name">Full Name <span class="required">*</span></label>
+                <input type="text" id="name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="class">Class/Grade <span class="required">*</span></label>
+                <input type="text" id="class" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="school">School Name <span class="required">*</span></label>
+                <input type="text" id="school" required>
+            </div>
+            
+            <button id="submitForm">Submit and Login</button>
+        </div>
+        
+        <div id="message" class="message"></div>
+    </div>
+
+    <script>
+        // Google Apps Script URL for storing data
+        const scriptURL = 'https://script.google.com/macros/s/AKfycbxpup7KElOWjbDob_r-b1W7M1ARhtuU0wExu05sHibADiK4-KFBCIgtxoSmYLzjZonN/exec';
+        
+        // Hide contact form initially
+        document.getElementById('contactForm').style.display = 'none';
+        
+        // Toggle form visibility when login button is clicked
+        document.getElementById('loginButton').addEventListener('click', function() {
+            const form = document.getElementById('contactForm');
+            form.style.display = form.style.display === 'none' ? 'block' : 'none';
+        });
+        
+        // Handle form submission
+        document.getElementById('submitForm').addEventListener('click', function() {
+            const name = document.getElementById('name').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const studentClass = document.getElementById('class').value.trim();
+            const school = document.getElementById('school').value.trim();
+            const messageDiv = document.getElementById('message');
+            
+            // Validate all fields
+            if (!name || !email || !studentClass || !school) {
+                showMessage('Please fill all required fields', 'error');
+                return;
+            }
+            
+            // Validate email format
+            if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+                showMessage('Please enter a valid email address', 'error');
+                return;
+            }
+            
+            // Show loading state
+            const submitButton = document.getElementById('submitForm');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            // Prepare form data
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('class', studentClass);
+            formData.append('school', school);
+            
+            // Submit to Google Sheets
+            fetch(scriptURL, { 
+                method: 'POST',
+                body: formData
+            })
+            .then(response => {
+                // Redirect to SOES website
+                window.location.href = 'https://infomo-education.github.io/soselibrary/';
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showMessage('Failed to submit form. Please try again.', 'error');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Submit and Login';
+            });
+        });
+        
+        function showMessage(text, type) {
+            const messageDiv = document.getElementById('message');
+            messageDiv.textContent = text;
+            messageDiv.className = `message ${type}`;
+            messageDiv.style.display = 'block';
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                messageDiv.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
+
