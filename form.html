@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Library Form</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #fdfefe;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    h2 {
+      text-align: center;
+      color: #2c3e50;
+    }
+    form {
+      display: flex;
+      flex-direction: column;
+    }
+    label {
+      margin-top: 10px;
+    }
+    input {
+      padding: 8px;
+      font-size: 16px;
+    }
+    button {
+      margin-top: 20px;
+      padding: 10px;
+      font-size: 16px;
+      background-color: #3498db;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #2980b9;
+    }
+  </style>
+</head>
+<body>
+  <h2>User Information Form</h2>
+  <form id="libraryForm">
+    <label>Full Name*:</label>
+    <input type="text" name="fullName" required>
+
+    <label>Email Address*:</label>
+    <input type="email" name="email" required>
+
+    <label>Grade-Section*:</label>
+    <input type="text" name="grade" required>
+
+    <label>School*:</label>
+    <input type="text" name="school" required>
+
+    <label>Student ID (optional):</label>
+    <input type="text" name="studentId">
+
+    <button type="submit">Submit</button>
+  </form>
+
+  <script>
+    const form = document.getElementById('libraryForm');
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      const data = new FormData(form);
+      fetch('https://script.google.com/macros/s/AKfycbwYX-Gxdea9fP9TkYigCrJKh-NxsEBkPfGGVuxu55ay_5fUkcwvroWNaCsZNH4xVjFcHw/exec', {
+        method: 'POST',
+        body: data
+      }).then(() => {
+        window.location.href = "https://infomo-education.github.io/soselibrary/";
+      }).catch(err => {
+        alert("Submission failed. Try again.");
+        console.error(err);
+      });
+    });
+  </script>
+</body>
+</html>
