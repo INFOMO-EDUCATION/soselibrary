@@ -3,52 +3,199 @@
 <head>
   <meta charset="UTF-8">
   <title>Login - SOSE Library</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f4f8;
+      font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
       display: flex;
-      flex-direction: column;
       justify-content: center;
       align-items: center;
-      height: 100vh;
-      margin: 0;
+      min-height: 100vh;
+      color: #333;
     }
-    h1 {
-      color: #2c3e50;
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
     }
-    .container {
+
+    .card {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 24px;
+      padding: 60px 45px;
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 
+                  0 10px 15px -3px rgba(0, 0, 0, 0.1);
       text-align: center;
+      max-width: 480px;
+      width: 90%;
+      backdrop-filter: blur(12px);
+      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      position: relative;
+      overflow: hidden;
     }
+
+    .card::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+      transform: rotate(30deg);
+      z-index: -1;
+    }
+
+    .card:hover {
+      transform: translateY(-5px) scale(1.01);
+      box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.3), 
+                  0 15px 20px -3px rgba(0, 0, 0, 0.15);
+    }
+
+    h1 {
+      font-size: 2.2rem;
+      color: #4a00e0;
+      margin-bottom: 30px;
+      font-weight: 700;
+      letter-spacing: -0.5px;
+      position: relative;
+      display: inline-block;
+    }
+
+    h1::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 60px;
+      height: 3px;
+      background: linear-gradient(to right, #8e2de2, #4a00e0);
+      border-radius: 3px;
+    }
+
     button {
-      padding: 12px 24px;
-      font-size: 16px;
-      background-color: #3498db;
-      color: white;
+      background: linear-gradient(135deg, #8e2de2 0%, #4a00e0 100%);
+      color: #fff;
+      padding: 16px 32px;
+      font-size: 1.1rem;
+      font-weight: 600;
       border: none;
-      border-radius: 6px;
+      border-radius: 50px;
       cursor: pointer;
-    }
-    button:hover {
-      background-color: #2980b9;
-    }
-    p {
+      transition: all 0.3s ease;
+      width: 100%;
       margin-top: 20px;
+      box-shadow: 0 4px 15px rgba(142, 45, 226, 0.3);
+      letter-spacing: 0.5px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    button::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 25px rgba(142, 45, 226, 0.4);
+    }
+
+    button:hover::after {
+      opacity: 1;
+    }
+
+    button:active {
+      transform: translateY(0);
+    }
+
+    p {
+      margin-top: 25px;
+      font-size: 1rem;
       color: #555;
+      line-height: 1.6;
     }
+
     a {
-      color: #2980b9;
+      color: #8e2de2;
+      font-weight: 600;
       text-decoration: none;
+      transition: all 0.3s ease;
+      position: relative;
+      display: inline-block;
     }
+
+    a::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background: #4a00e0;
+      transition: width 0.3s ease;
+    }
+
     a:hover {
-      text-decoration: underline;
+      color: #4a00e0;
+    }
+
+    a:hover::after {
+      width: 100%;
+    }
+
+    @media (max-width: 500px) {
+      .card {
+        padding: 40px 25px;
+        border-radius: 20px;
+      }
+
+      h1 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+      }
+
+      button {
+        padding: 14px 28px;
+        font-size: 1rem;
+      }
+    }
+
+    /* Floating animation */
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .card {
+      animation: float 6s ease-in-out infinite;
     }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-  <div class="container">
-    <h1>Welcome to SOSE Library Login</h1>
+  <div class="card">
+    <h1>Welcome to SOSE Library</h1>
     <button onclick="location.href='form.html'">Login</button>
     <p>If you want to help the school to help track the user then fill this.</p>
     <p><a href="main.html">or you can directly enter</a></p>
