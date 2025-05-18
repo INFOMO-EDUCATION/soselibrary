@@ -1,0 +1,1159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IOQM - Indian Olympiad Qualifier in Mathematics | Managed by Infomo Education</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #e74c3c;
+            --accent-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --success-color: #27ae60;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+        
+        header {
+            background: linear-gradient(135deg, var(--primary-color), var(--dark-color));
+            color: white;
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo img {
+            height: 50px;
+            margin-right: 15px;
+        }
+        
+        .logo-text h1 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+        
+        .logo-text p {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        nav ul li {
+            margin-left: 20px;
+        }
+        
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+        
+        .hero {
+            background: url('https://images.unsplash.com/photo-1635070041078-e363dbe005cb') center/cover;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            position: relative;
+            color: white;
+            text-align: center;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+        }
+        
+        .hero h2 {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid white;
+            margin-left: 15px;
+        }
+        
+        .btn-outline:hover {
+            background: white;
+            color: var(--primary-color);
+        }
+        
+        section {
+            padding: 60px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .section-title h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            position: relative;
+            display: inline-block;
+            padding-bottom: 15px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 3px;
+            background-color: var(--secondary-color);
+        }
+        
+        .highlights-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .highlight-card {
+            background: white;
+            border-radius: 8px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+        
+        .highlight-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .highlight-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 15px;
+        }
+        
+        .highlight-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .exam-structure {
+            background-color: var(--light-color);
+            padding: 40px;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+        
+        .exam-structure h3 {
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+        
+        .syllabus-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 30px;
+        }
+        
+        .syllabus-card {
+            flex-basis: 48%;
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 25px;
+        }
+        
+        .syllabus-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        
+        .syllabus-card ul {
+            list-style-position: inside;
+        }
+        
+        .syllabus-card ul li {
+            margin-bottom: 8px;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 50px auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--accent-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: white;
+            border: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            top: 15px;
+            z-index: 1;
+        }
+        
+        .left {
+            left: 0;
+        }
+        
+        .right {
+            left: 50%;
+        }
+        
+        .left::after {
+            right: -12px;
+        }
+        
+        .right::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .benefits-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .benefit-item {
+            flex-basis: 23%;
+            text-align: center;
+            margin-bottom: 30px;
+            background: white;
+            padding: 30px 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .benefit-item:hover {
+            transform: scale(1.05);
+        }
+        
+        .benefit-item i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .benefit-item h4 {
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            color: var(--primary-color);
+        }
+        
+        .registration-steps {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .step {
+            flex-basis: 22%;
+            text-align: center;
+            position: relative;
+            margin-bottom: 30px;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 15px;
+        }
+        
+        .step-content {
+            background: white;
+            padding: 25px 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            height: 100%;
+        }
+        
+        .resources-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .resource-card {
+            flex-basis: 30%;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .resource-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .resource-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .resource-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .resource-card:hover .resource-img img {
+            transform: scale(1.1);
+        }
+        
+        .resource-content {
+            padding: 20px;
+        }
+        
+        .resource-content h3 {
+            color: var(--primary-color);
+            margin-bottom: 10px;
+        }
+        
+        .testimonial-carousel {
+            max-width: 800px;
+            margin: 50px auto;
+            position: relative;
+        }
+        
+        .testimonial {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            display: none;
+        }
+        
+        .testimonial.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .testimonial blockquote {
+            font-size: 1.2rem;
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .testimonial blockquote::before,
+        .testimonial blockquote::after {
+            content: '"';
+            font-size: 2rem;
+            color: var(--accent-color);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .testimonial blockquote::before {
+            top: -15px;
+            left: -10px;
+        }
+        
+        .testimonial blockquote::after {
+            bottom: -30px;
+            right: -10px;
+        }
+        
+        .testimonial cite {
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+        
+        .carousel-nav {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #ccc;
+            border-radius: 50%;
+            margin: 0 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background-color: var(--secondary-color);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: white;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        table th, table td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        
+        table th {
+            background-color: var(--primary-color);
+            color: white;
+        }
+        
+        table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        
+        table tr:hover {
+            background-color: #e9e9e9;
+        }
+        
+        details {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        details summary {
+            padding: 15px 20px;
+            font-weight: bold;
+            cursor: pointer;
+            background-color: var(--light-color);
+            color: var(--primary-color);
+            list-style: none;
+            position: relative;
+        }
+        
+        details summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        details summary::after {
+            content: '+';
+            position: absolute;
+            right: 20px;
+            font-size: 1.2rem;
+            transition: transform 0.3s ease;
+        }
+        
+        details[open] summary::after {
+            transform: rotate(45deg);
+        }
+        
+        details p {
+            padding: 15px 20px;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        
+        .contact-card {
+            flex-basis: 30%;
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .contact-card i {
+            font-size: 2.5rem;
+            color: var(--accent-color);
+            margin-bottom: 20px;
+        }
+        
+        .contact-card h3 {
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+        
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 50px 0 20px;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section {
+            flex-basis: 30%;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            font-size: 1.3rem;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--secondary-color);
+        }
+        
+        .footer-section p, .footer-section a {
+            color: #ddd;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+        
+        .footer-section a:hover {
+            color: var(--accent-color);
+        }
+        
+        .social-links a {
+            display: inline-block;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        @media (max-width: 992px) {
+            .benefit-item, .step, .resource-card, .footer-section {
+                flex-basis: 48%;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item::after {
+                left: 18px;
+            }
+            
+            .left::after, .right::after {
+                left: 18px;
+            }
+            
+            .right {
+                left: 0%;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            nav ul {
+                margin-top: 20px;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h2 {
+                font-size: 2.2rem;
+            }
+            
+            .syllabus-card, .contact-card {
+                flex-basis: 100%;
+            }
+            
+            .benefit-item, .step, .resource-card, .footer-section {
+                flex-basis: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <img src="https://www.mtai.org.in/wp-content/uploads/2022/10/cropped-mta-logo-300x300.png" alt="IOQM Logo">
+                <div class="logo-text">
+                    <h1>IOQM</h1>
+                    <p>Indian Olympiad Qualifier in Mathematics</p>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#syllabus">Syllabus</a></li>
+                    <li><a href="#dates">Dates</a></li>
+                    <li><a href="#registration">Registration</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content container">
+            <h2>Indian Olympiad Qualifier in Mathematics</h2>
+            <p>The prestigious first step towards representing India at the International Mathematical Olympiad (IMO)</p>
+            <a href="#registration" class="btn">Register Now</a>
+            <a href="#about" class="btn btn-outline">Learn More</a>
+        </div>
+    </section>
+
+    <section id="about" class="container">
+        <div class="section-title">
+            <h2>About IOQM</h2>
+        </div>
+        <p>The Indian Olympiad Qualifier in Mathematics (IOQM) is the prestigious first step in India's rigorous selection process for the International Mathematical Olympiad (IMO). This national-level examination identifies and nurtures exceptional mathematical talent among pre-university students across the country.</p>
+        <p>Managed by Infomo Education in collaboration with official organizers, IOQM serves as the foundation for India's participation in the world's most prestigious mathematical competition for high school students.</p>
+        
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <i class="fas fa-trophy"></i>
+                <h3>Prestigious Pathway</h3>
+                <p>First stage in India's six-level selection process for IMO</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-award"></i>
+                <h3>National Recognition</h3>
+                <p>Recognized by all major educational institutions in India</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-brain"></i>
+                <h3>Skill Development</h3>
+                <p>Enhances problem-solving and creative thinking abilities</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-university"></i>
+                <h3>University Advantage</h3>
+                <p>Strong performance can boost college applications</p>
+            </div>
+        </div>
+
+        <div class="exam-structure">
+            <h3>Examination Structure</h3>
+            <p><strong>Duration:</strong> 3 hours</p>
+            <p><strong>Question Type:</strong> 30 problems requiring numerical answers</p>
+            <p><strong>Answer Range:</strong> Whole numbers between 00 and 99</p>
+            <p><strong>Marking Scheme:</strong> Each correct answer typically carries equal weight</p>
+            <p><strong>Tools Allowed:</strong> Only writing instruments, compass, and ruler (no calculators)</p>
+        </div>
+    </section>
+
+    <section id="syllabus" class="container">
+        <div class="section-title">
+            <h2>Syllabus</h2>
+        </div>
+        <p>The IOQM syllabus encompasses various mathematical topics, excluding calculus. The examination tests students' understanding and application of concepts in the following key areas:</p>
+        
+        <div class="syllabus-container">
+            <div class="syllabus-card">
+                <h3>Algebra (35% weightage)</h3>
+                <ul>
+                    <li>Polynomial equations and inequalities</li>
+                    <li>Functional equations</li>
+                    <li>Sequences and series (including recursive sequences)</li>
+                    <li>Complex numbers in algebra</li>
+                </ul>
+            </div>
+            <div class="syllabus-card">
+                <h3>Number Theory (25% weightage)</h3>
+                <ul>
+                    <li>Divisibility properties</li>
+                    <li>Prime number theorems</li>
+                    <li>Modular arithmetic applications</li>
+                    <li>Diophantine equations</li>
+                </ul>
+            </div>
+            <div class="syllabus-card">
+                <h3>Geometry (25% weightage)</h3>
+                <ul>
+                    <li>Advanced Euclidean geometry</li>
+                    <li>Power of points and radical axes</li>
+                    <li>Inversion and projective geometry concepts</li>
+                    <li>Coordinate geometry transformations</li>
+                </ul>
+            </div>
+            <div class="syllabus-card">
+                <h3>Combinatorics (15% weightage)</h3>
+                <ul>
+                    <li>Advanced counting techniques</li>
+                    <li>Graph theory basics</li>
+                    <li>Probabilistic methods</li>
+                    <li>Extremal combinatorics</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="eligibility" class="container">
+        <div class="section-title">
+            <h2>Eligibility Criteria</h2>
+        </div>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Academic Level</h3>
+                <p>Classes 8-12</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-birthday-cake"></i>
+                <h3>Age Limit</h3>
+                <p>Born on or after August 1, 2002</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-university"></i>
+                <h3>Educational Status</h3>
+                <p>Must not have started university education by June 1, 2025</p>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-redo"></i>
+                <h3>Attempt Limit</h3>
+                <p>Maximum of 5 attempts (consecutive or non-consecutive)</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="selection" class="container">
+        <div class="section-title">
+            <h2>Selection Process</h2>
+        </div>
+        <p>The IOQM is the first stage in a rigorous six-stage selection process to identify and train India's team for the International Mathematical Olympiad:</p>
+        
+        <div class="timeline">
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>IOQM</h3>
+                    <p>Initial screening based on a 3-hour exam with 30 problems</p>
+                    <p><strong>Date:</strong> September 2025</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>Regional Mathematical Olympiad (RMO)</h3>
+                    <p>A 3-hour exam with six descriptive problems</p>
+                    <p><strong>Date:</strong> November 2025</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>Indian National Mathematical Olympiad (INMO)</h3>
+                    <p>A 4.5-hour exam with six challenging problems</p>
+                    <p><strong>Date:</strong> January 2026</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>IMOTC Training Camp</h3>
+                    <p>Intensive training camp where top performers are selected</p>
+                    <p><strong>Date:</strong> April-June 2026</p>
+                </div>
+            </div>
+            <div class="timeline-item left">
+                <div class="timeline-content">
+                    <h3>Pre-Departure Camp</h3>
+                    <p>Final training before the IMO</p>
+                </div>
+            </div>
+            <div class="timeline-item right">
+                <div class="timeline-content">
+                    <h3>International Mathematical Olympiad (IMO)</h3>
+                    <p>The selected team represents India at the IMO</p>
+                    <p><strong>Date:</strong> July 2026</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="benefits" class="container">
+        <div class="section-title">
+            <h2>Why Participate in IOQM?</h2>
+        </div>
+        <div class="benefits-container">
+            <div class="benefit-item">
+                <i class="fas fa-trophy"></i>
+                <h4>National Recognition</h4>
+                <p>Stand out in academic circles and university applications</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-brain"></i>
+                <h4>Skill Enhancement</h4>
+                <p>Develop superior problem-solving and analytical skills</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-globe"></i>
+                <h4>Global Opportunities</h4>
+                <p>Potential to represent India at international level</p>
+            </div>
+            <div class="benefit-item">
+                <i class="fas fa-users"></i>
+                <h4>Elite Network</h4>
+                <p>Connect with the brightest mathematical minds</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="registration" class="container">
+        <div class="section-title">
+            <h2>Registration Process</h2>
+        </div>
+        <p>Students can register for IOQM through their respective schools or designated centers. Here's the step-by-step process:</p>
+        
+        <div class="registration-steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>School Registration</h3>
+                    <p>Schools must register first (May-June 2025)</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>Student Enrollment</h3>
+                    <p>Registered schools enroll students</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Fee Payment</h3>
+                    <p>Nominal fee (scholarships available for needy students)</p>
+                </div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <h3>Admit Card</h3>
+                    <p>Available 15 days before exam</p>
+                </div>
+            </div>
+        </div>
+        
+        <p style="text-align: center; margin-top: 30px;"><em>Direct registration may be available for students whose schools are not participating</em></p>
+    </section>
+
+    <section id="resources" class="container">
+        <div class="section-title">
+            <h2>Preparation Resources</h2>
+        </div>
+        
+        <h3 style="text-align: center; margin-bottom: 20px;">Recommended Books</h3>
+        <div class="resources-container">
+            <div class="resource-card">
+                <div class="resource-img">
+                    <img src="data:image/jpeg;base64,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" alt="Book Cover">
+                </div>
+                <div class="resource-content">
+                    <h3>"Challenge and Thrill of Pre-College Mathematics"</h3>
+                    <p>By V. Krishnamurthy - Covers fundamental concepts with challenging problems</p>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-img">
+                    <img src="data:image/jpeg;base64,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" alt="Book Cover">
+                </div>
+                <div class="resource-content">
+                    <h3>"Problem Primer for Olympiads"</h3>
+                    <p>By C.R. Pranesachar - Excellent collection of Olympiad-level problems</p>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-img">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQqihWNzjQ-xVld2xIJbJ3bbrD1h1FiH9H-Sw&s" alt="Book Cover">
+                </div>
+                <div class="resource-content">
+                    <h3>"Mathematical Circles: Russian Experience"</h3>
+                    <p>By Fomin - Classic text with problem-solving techniques</p>
+                </div>
+            </div>
+        </div>
+        
+        <h3 style="text-align: center; margin: 40px 0 20px;">Online Resources</h3>
+        <div class="highlights-grid">
+            <div class="highlight-card">
+                <i class="fas fa-laptop"></i>
+                <h3>havard mathematics</h3>
+                <p>Comprehensive resource with forums and practice problems</p>
+                <a href="https://pll.harvard.edu/subject/mathematics/free" target="_blank" class="btn" style="margin-top: 10px; padding: 8px 15px; font-size: 0.9rem;">Visit Site</a>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-chalkboard-teacher"></i>
+                <h3>olymiad wallah</h3>
+                <p>Interactive courses on Olympiad mathematics</p>
+                <a href="https://www.pw.live/olympiad/government-olympiads/batches/ioqm-2025-206643" target="_blank" class="btn" style="margin-top: 10px; padding: 8px 15px; font-size: 0.9rem;">Visit Site</a>
+            </div>
+            <div class="highlight-card">
+                <i class="fas fa-graduation-cap"></i>
+                <h3>Infomo Education Portal</h3>
+                <p>Exclusive resources and mock tests</p>
+                <a href="https://forms.gle/QW2XP4dpRr83oDqM6" class="btn" style="margin-top: 10px; padding: 8px 15px; font-size: 0.9rem;">Access Resources</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="container">
+        <div class="section-title">
+            <h2>Success Stories</h2>
+        </div>
+        
+        <div class="testimonial-carousel">
+            <div class="testimonial active">
+                <blockquote>"IOQM was my first step toward representing India at IMO. The rigorous preparation shaped my mathematical thinking and opened doors to incredible opportunities."</blockquote>
+                <cite>- 2023 IMO Gold Medalist</cite>
+            </div>
+            <div class="testimonial">
+                <blockquote>"Even without making it to IMO, the IOQM training helped me develop problem-solving skills that made JEE Advanced seem easy. It was a transformative experience."</blockquote>
+                <cite>- MIT Undergraduate</cite>
+            </div>
+            <div class="testimonial">
+                <blockquote>"The IOQM journey taught me more than mathematics - it taught me how to think, how to approach complex problems, and how to persevere through challenges."</blockquote>
+                <cite>- Stanford PhD Candidate</cite>
+            </div>
+            
+            <div class="carousel-nav">
+                <div class="carousel-dot active" data-index="0"></div>
+                <div class="carousel-dot" data-index="1"></div>
+                <div class="carousel-dot" data-index="2"></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="dates" class="container">
+        <div class="section-title">
+            <h2>Important Dates for IOQM 2025</h2>
+        </div>
+        
+        <table>
+            <thead>
+                <tr>
+                    <th>Event</th>
+                    <th>Tentative Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Registration Opens</td>
+                    <td>June 1, 2025</td>
+                </tr>
+                <tr>
+                    <td>Registration Closes</td>
+                    <td>July 31, 2025</td>
+                </tr>
+                <tr>
+                    <td>Admit Card Available</td>
+                    <td>August 25, 2025</td>
+                </tr>
+                <tr>
+                    <td>Exam Date</td>
+                    <td>September 15, 2025</td>
+                </tr>
+                <tr>
+                    <td>Results Declaration</td>
+                    <td>October 31, 2025</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section id="ioqm-faqs" style="font-family: Arial, sans-serif; padding: 20px; max-width: 800px; margin: auto;">
+        <h2 style="text-align: center; color: #2c3e50;">📘 Frequently Asked Questions (FAQs) – IOQM</h2>
+        <div style="margin-top: 30px;">
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">1. What is IOQM?</summary>
+            <p style="margin-left: 20px;">The Indian Olympiad Qualifier in Mathematics (IOQM) is a national-level examination that serves as the first stage in India's selection process for the International Mathematical Olympiad (IMO). It assesses students' mathematical aptitude and problem-solving skills.</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">2. Who conducts the IOQM?</summary>
+            <p style="margin-left: 20px;">IOQM is jointly organized by the Mathematics Teachers’ Association of India (MTA(I)) and the Homi Bhabha Centre for Science Education (HBCSE) under the National Board for Higher Mathematics (NBHM).</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">3. Who is eligible to appear for IOQM?</summary>
+            <p style="margin-left: 20px;">Students from Classes 8 to 12 who are Indian citizens and born on or after August 1, 2004, are eligible to appear for IOQM. Additionally, they should not have commenced studies in a university or equivalent institution.</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">4. What is the format of the IOQM exam?</summary>
+            <p style="margin-left: 20px;">The IOQM is a 3-hour pen-and-paper examination consisting of 30 questions. Answers are numeric, ranging from 00 to 99, and must be marked on an OMR sheet.</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">5. What is the syllabus for IOQM?</summary>
+            <p style="margin-left: 20px;">The IOQM syllabus includes topics from algebra, number theory, geometry, combinatorics, and basic mathematics. Calculus is excluded.</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">6. How can I register for IOQM?</summary>
+            <p style="margin-left: 20px;">Registration for IOQM is typically done through the official website <a href="https://ioqm.in/ioqm-registration/" target="_blank" rel="noopener noreferrer">ioqm.in</a>. Students can register individually or through their schools.</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">7. What is the fee for IOQM registration?</summary>
+            <p style="margin-left: 20px;">The registration fee for IOQM is generally nominal. The exact amount and payment details are provided during the registration process on the official website.</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">8. When is the IOQM exam conducted?</summary>
+            <p style="margin-left: 20px;">The IOQM exam is usually held in the first week of September each year. Specific dates are announced on the official website.</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">9. What happens after IOQM?</summary>
+            <p style="margin-left: 20px;">Students who perform well in IOQM qualify for the Regional Mathematical Olympiad (RMO), followed by the Indian National Mathematical Olympiad (INMO), the International Mathematical Olympiad Training Camp (IMOTC), and finally, the International Mathematical Olympiad (IMO).</p>
+          </details>
+          <details style="margin-bottom: 15px;">
+            <summary style="font-weight: bold; cursor: pointer;">10. Where can I find past IOQM papers and solutions?</summary>
+            <p style="margin-left: 20px;">Previous years' IOQM question papers and answer keys are available on the official IOQM website under the 'Posts' section.</p>
+          </details>
+        </div>
+      </section>
+      
