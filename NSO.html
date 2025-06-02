@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>National Science Olympiad (NSO)</title>
+    <style>
+        /* Global Styles */
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --text-light: #7f8c8d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        p {
+            margin-bottom: 1rem;
+        }
+
+        a {
+            text-decoration: none;
+            color: var(--secondary-color);
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateX(-50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes slideInRight {
+            from { opacity: 0; transform: translateX(50px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .animate {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .animate-left {
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .animate-right {
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .pulse:hover {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            padding: 0.5rem 2rem;
+            background-color: rgba(44, 62, 80, 0.95);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: transform 0.3s;
+        }
+
+        .logo:hover img {
+            transform: rotate(10deg);
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: white;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 5rem 2rem;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        button {
+            background-color: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 5px;
+            height: 5px;
+            background: rgba(255, 255, 255, 0.5);
+            opacity: 0;
+            border-radius: 100%;
+            transform: scale(1, 1) translate(-50%);
+            transform-origin: 50% 50%;
+        }
+
+        button:focus:not(:active)::after {
+            animation: ripple 1s ease-out;
+        }
+
+        @keyframes ripple {
+            0% {
+                transform: scale(0, 0);
+                opacity: 0.5;
+            }
+            100% {
+                transform: scale(20, 20);
+                opacity: 0;
+            }
+        }
+
+        button:hover {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .countdown {
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 1rem;
+            border-radius: 8px;
+            margin-top: 2rem;
+            display: inline-block;
+            backdrop-filter: blur(5px);
+        }
+
+        .countdown h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .countdown-timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: white;
+        }
+
+        /* Floating particles animation */
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .particle {
+            position: absolute;
+            background-color: rgba(255, 255, 255, 0.5);
+            border-radius: 50%;
+            animation: float linear infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Info Sections */
+        .info-section {
+            padding: 4rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .info-section.visible {
+            opacity: 1;
+        }
+
+        .info-section h2 {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            position: relative;
+        }
+
+        .info-section h2::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--secondary-color);
+            margin: 0.5rem auto;
+            transform-origin: center;
+            transition: transform 0.3s;
+        }
+
+        .info-section:hover h2::after {
+            transform: scaleX(1.5);
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .about-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            transform: perspective(1000px) rotateY(0deg);
+        }
+
+        .about-card:hover {
+            transform: perspective(1000px) rotateY(5deg);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .about-card h3 {
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about-card h3::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: var(--secondary-color);
+            transition: width 0.3s;
+        }
+
+        .about-card:hover h3::after {
+            width: 100%;
+        }
+
+        /* Timeline Styles */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary-color);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+            transform: scaleY(0);
+            transform-origin: top;
+            animation: growVertical 1.5s ease-out forwards;
+        }
+
+        @keyframes growVertical {
+            from { transform: scaleY(0); }
+            to { transform: scaleY(1); }
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            animation: slideInRight 0.8s ease-out forwards;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s;
+        }
+
+        .timeline-content::before {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--secondary-color);
+            border-radius: 50%;
+            top: 20px;
+            right: -12px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::before {
+            right: auto;
+            left: -12px;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .timeline-date {
+            color: var(--accent-color);
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Syllabus Section */
+        .syllabus-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: box-shadow 0.3s;
+        }
+
+        .syllabus-container:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .class-selector {
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        .class-selector label {
+            margin-right: 1rem;
+            font-weight: 500;
+        }
+
+        .class-selector select {
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: white;
+            transition: all 0.3s;
+        }
+
+        .class-selector select:focus {
+            border-color: var(--secondary-color);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.2);
+            outline: none;
+        }
+
+        .syllabus-content {
+            background-color: var(--light-color);
+            padding: 2rem;
+            border-radius: 5px;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-out, padding 0.5s ease;
+        }
+
+        .syllabus-content.active {
+            max-height: 1000px;
+            padding: 2rem;
+        }
+
+        /* Registration Section */
+        .registration-steps {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .step {
+            background-color: white;
+            padding: 1.5rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .step::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+
+        .step:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .step:hover::before {
+            transform: scaleX(1);
+        }
+
+        .step-number {
+            background-color: var(--secondary-color);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            font-weight: bold;
+            transition: all 0.3s;
+        }
+
+        .step:hover .step-number {
+            background-color: var(--accent-color);
+            transform: rotate(360deg);
+        }
+
+        .note {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-left: 4px solid var(--accent-color);
+            max-width: 800px;
+            margin: 0 auto;
+            transition: all 0.3s;
+        }
+
+        .note:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Resources Section */
+        .resource-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background-color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .resource-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--secondary-color);
+            transform: scaleX(0);
+            transform-origin: right;
+            transition: transform 0.3s;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-card:hover::after {
+            transform: scaleX(1);
+            transform-origin: left;
+        }
+
+        .download-btn {
+            background-color: var(--primary-color);
+            margin-top: 1rem;
+        }
+
+        /* FAQ Section */
+        .accordion {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .accordion-item {
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .accordion-btn {
+            width: 100%;
+            padding: 1rem;
+            text-align: left;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+
+        .accordion-btn:hover {
+            background-color: #1a252f;
+        }
+
+        .accordion-btn::after {
+            content: '+';
+            font-size: 1.2rem;
+            transition: transform 0.3s;
+        }
+
+        .accordion-btn.active::after {
+            content: '-';
+        }
+
+        .accordion-content {
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+
+        .accordion-content-inner {
+            padding: 1rem;
+        }
+
+        /* Sample Questions Section */
+        .question-container {
+            background-color: white;
+            border-radius: 8px;
+            padding: 2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-top: 2rem;
+        }
+
+        .question-nav {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .question {
+            margin-bottom: 1.5rem;
+            font-weight: 500;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        @media (max-width: 600px) {
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .option {
+            padding: 0.8rem;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .option:hover {
+            border-color: var(--secondary-color);
+            background-color: rgba(52, 152, 219, 0.1);
+        }
+
+        .option.selected {
+            background-color: var(--secondary-color);
+            color: white;
+            border-color: var(--secondary-color);
+        }
+
+        .option.correct {
+            background-color: #2ecc71;
+            color: white;
+            border-color: #2ecc71;
+        }
+
+        .option.incorrect {
+            background-color: #e74c3c;
+            color: white;
+            border-color: #e74c3c;
+        }
+
+        .explanation {
+            background-color: #f8f9fa;
+            padding: 1rem;
+            border-radius: 5px;
+            margin-top: 1rem;
+            display: none;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 3rem 2rem 1rem;
+            position: relative;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto 2rem;
+        }
+
+        .contact-info h3, .quick-links h3 {
+            color: white;
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+        }
+
+        .quick-links ul {
+            list-style: none;
+        }
+
+        .quick-links li {
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-links a {
+            color: var(--light-color);
+            transition: color 0.3s;
+        }
+
+        .quick-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: transform 0.3s;
+        }
+
+        .social-links a:hover {
+            transform: translateY(-3px);
+            color: var(--secondary-color);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .back-to-top {
+            position: absolute;
+            right: 2rem;
+            top: -1.5rem;
+            background-color: var(--accent-color);
+            color: white;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .back-to-top:hover {
+            transform: translateY(-5px);
+            background-color: #c0392b;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                padding: 1rem;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+                position: absolute;
+                top: 1rem;
+                right: 1rem;
+            }
+
+            nav {
+                width: 100%;
+                max-height: 0;
+                overflow: hidden;
+                transition: max-height 0.3s ease-out;
+            }
+
+            nav.show {
+                max-height: 500px;
+                margin-top: 1rem;
+            }
+
+            nav ul {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem 0;
+            }
+
+            .hero-content h2 {
+                font-size: 2rem;
+            }
+
+            .hero-content p {
+                font-size: 1.1rem;
+            }
+
+            .timeline::before {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-content::before {
+                left: -12px;
+                right: auto;
+            }
+
+            .info-section {
+                padding: 2rem 1rem;
+            }
+        }
+
+        /* Print Styles */
+        @media print {
+            header, footer, button, .mobile-menu-btn {
+                display: none !important;
+            }
+
+            body {
+                padding: 0;
+                font-size: 12pt;
+                color: black;
+            }
+
+            .info-section {
+                page-break-inside: avoid;
+                padding: 1rem 0 !important;
+            }
+
+            .about-card, .resource-card, .timeline-content {
+                box-shadow: none !important;
+                border: 1px solid #ddd !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5GP-ThaWQZqJjqj4leOyBB4MK-luh1avGvA&s" alt="NSO Logo">
+            <h1>National Science Olympiad</h1>
+        </div>
+        <button class="mobile-menu-btn">☰</button>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#dates">Dates</a></li>
+                <li><a href="#syllabus">Syllabus</a></li>
+                <li><a href="#registration">Registration</a></li>
+                <li><a href="#resources">Resources</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#sample-questions">Sample Questions</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="hero">
+            <div class="particles" id="particles"></div>
+            <div class="hero-content">
+                <h2 class="animate">Igniting Young Scientific Minds</h2>
+                <p class="animate">Annual science competition for students from Class 1 to 12</p>
+                <button id="registerBtn" class="animate pulse">Learn About Registration</button>
+                <div class="countdown animate">
+                    <h3>Next Exam Countdown</h3>
+                    <div class="countdown-timer" id="countdown-timer"></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="info-section">
+            <h2>About NSO</h2>
+            <div class="about-content">
+                <div class="about-card animate-left">
+                    <h3>What is NSO?</h3>
+                    <p>The National Science Olympiad (NSO) is a prestigious annual competition organized by the Science Olympiad Foundation (SOF) to promote scientific thinking among school students.</p>
+                </div>
+                <div class="about-card animate">
+                    <h3>Eligibility</h3>
+                    <p>Open to students from Class 1 to 12 from SOF-affiliated schools. There's no minimum percentage requirement.</p>
+                </div>
+                <div class="about-card animate-right">
+                    <h3>Exam Pattern</h3>
+                    <p>Objective-type questions testing logical reasoning, science concepts, and higher-order thinking skills.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="dates" class="info-section">
+            <h2>Important Dates 2025-26</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">Oct 2025</div>
+                    <div class="timeline-content">
+                        <h3>Registration Deadline</h3>
+                        <p>Last date for schools to submit student registrations</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Nov-Dec 2025</div>
+                    <div class="timeline-content">
+                        <h3>Level 1 Exam</h3>
+                        <p>Three exam dates available: Nov 13, Nov 27, Dec 11</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Jan 2026</div>
+                    <div class="timeline-content">
+                        <h3>Results Announcement</h3>
+                        <p>Level 1 results declared on SOF website</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">Feb 2026</div>
+                    <div class="timeline-content">
+                        <h3>Level 2 Exam</h3>
+                        <p>For qualified students (top 5% per class)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="syllabus" class="info-section">
+            <h2>Syllabus Overview</h2>
+            <div class="syllabus-container">
+                <div class="class-selector">
+                    <label for="classSelect">Select Class:</label>
+                    <select id="classSelect">
+                        <option value="1-4">Classes 1-4</option>
+                        <option value="5-10">Classes 5-10</option>
+                        <option value="11-12">Classes 11-12</option>
+                    </select>
+                </div>
+                <div id="syllabusContent" class="syllabus-content">
+                    <!-- Content will be loaded by JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <section id="registration" class="info-section">
+            <h2>Registration Process</h2>
+            <div class="registration-steps">
+                <div class="step animate-left">
+                    <div class="step-number">1</div>
+                    <p>School registers with SOF (if not already registered)</p>
+                </div>
+                <div class="step animate">
+                    <div class="step-number">2</div>
+                    <p>School collects ₹125 per student (fee may vary slightly)</p>
+                </div>
+                <div class="step animate">
+                    <div class="step-number">3</div>
+                    <p>School submits student details and payment to SOF</p>
+                </div>
+                <div class="step animate-right">
+                    <div class="step-number">4</div>
+                    <p>SOF sends admit cards to school 2 weeks before exam</p>
+                </div>
+            </div>
+            <div class="note">
+                <p><strong>Note:</strong> Individual registrations are not accepted. Students must register through their schools.</p>
+            </div>
+      <section id="resources" class="info-section">
+    <h2>Preparation Resources</h2>
+    <div class="resource-cards">
+        <!-- Previous Year Papers -->
+        <div class="resource-card animate-left">
+            <div class="resource-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#3498db">
+                    <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V5h14v14z"/>
+                    <path d="M7 12h10v2H7zm0-4h10v2H7zm0 8h7v2H7z"/>
+                </svg>
+            </div>
+            <h3>Previous Year Papers</h3>
+            <p>Official NSO papers from last 5 years with solutions</p>
+            <a href="https://newtonclasses.net/nso-previous-year-papers/" class="resource-btn pulse" target="_blank">
+                Download Now
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Sample Papers -->
+        <div class="resource-card animate">
+            <div class="resource-icon">
+                <svg xmlns="http://www://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#e74c3c">
+                    <path d="M14 2H6c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm2 16H8v-2h8v2zm0-4H8v-2h8v2zm-3-5V3.5L18.5 9H13z"/>
+                </svg>
+            </div>
+            <h3>Sample Papers</h3>
+            <p>Latest pattern practice papers from SOF</p>
+            <a href="https://sofworld.org/nso" class="resource-btn pulse" target="_blank">
+                Download Now
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                    <path d="M19 9h-4V3H9v6H5l7 7 7-7zM5 18v2h14v-2H5z"/>
+                </svg>
+            </a>
+        </div>
+
+        <!-- Study Material -->
+        <div class="resource-card animate-right">
+            <div class="resource-icon">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#2ecc71">
+                    <path d="M18 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM6 4h5v8l-2.5-1.5L6 12V4z"/>
+                </svg>
+            </div>
+            <h3>Study Material</h3>
+            <p>Recommended books and preparation guides</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLSe2cTImlWNorYlfWtyRc2nPXX1PgtcW0Xuo3IoulBcuxlm9KQ/viewform?usp=sharing&ouid=111569093698559926642" class="resource-btn pulse" target="_blank">
+                Get Resources
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="18px" height="18px">
+                    <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/>
+                </svg>
+            </a>
+        </div>
+    </div>
+</section>
+
+<style>
+    /* Enhanced Resource Cards Styling */
+    .resource-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+
+    .resource-card {
+        background: white;
+        border-radius: 12px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+        text-align: center;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        position: relative;
+        overflow: hidden;
+    }
+
+    .resource-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+    }
+
+    .resource-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 5px;
+        background: linear-gradient(90deg, #3498db, #2ecc71);
+    }
+
+    .resource-card:nth-child(1)::before {
+        background: #3498db;
+    }
+
+    .resource-card:nth-child(2)::before {
+        background: #e74c3c;
+    }
+
+    .resource-card:nth-child(3)::before {
+        background: #2ecc71;
+    }
+
+    .resource-icon {
+        width: 70px;
+        height: 70px;
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(52, 152, 219, 0.1);
+        border-radius: 50%;
+    }
+
+    .resource-card:nth-child(1) .resource-icon {
+        background: rgba(52, 152, 219, 0.1);
+    }
+
+    .resource-card:nth-child(2) .resource-icon {
+        background: rgba(231, 76, 60, 0.1);
+    }
+
+    .resource-card:nth-child(3) .resource-icon {
+        background: rgba(46, 204, 113, 0.1);
+    }
+
+    .resource-card h3 {
+        color: #2c3e50;
+        font-size: 1.4rem;
+        margin-bottom: 0.8rem;
+        text-transform: capitalize;
+    }
+
+    .resource-card p {
+        color: #7f8c8d;
+        margin-bottom: 1.5rem;
+        font-size: 0.95rem;
+    }
+
+    .resource-btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        background: #2c3e50;
+        color: white;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 500;
+        transition: all 0.3s;
+        text-decoration: none;
+    }
+
+    .resource-card:nth-child(1) .resource-btn {
+        background: #3498db;
+    }
+
+    .resource-card:nth-child(2) .resource-btn {
+        background: #e74c3c;
+    }
+
+    .resource-card:nth-child(3) .resource-btn {
+        background: #2ecc71;
+    }
+
+    .resource-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .resource-cards {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+        <section id="faq" class="info-section">
+            <h2>Frequently Asked Questions</h2>
+            <div class="accordion">
+                <div class="accordion-item">
+                    <button class="accordion-btn">How do I register for NSO?</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Registration is done through your school. Contact your school coordinator to participate. Individual registrations are not accepted.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">What is the exam pattern?</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>The exam consists of multiple-choice questions divided into three sections: Logical Reasoning, Science, and Achievers Section. The number of questions varies by class level.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">When will results be declared?</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>Level 1 results are typically declared within 6-8 weeks after the exam. Level 2 results come about 4-6 weeks after that exam.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="accordion-item">
+                    <button class="accordion-btn">How can I prepare for NSO?</button>
+                    <div class="accordion-content">
+                        <div class="accordion-content-inner">
+                            <p>You can prepare by:
+                                <ul>
+                                    <li>Studying your school science curriculum thoroughly</li>
+                                    <li>Practicing with previous year papers</li>
+                                    <li>Solving logical reasoning questions</li>
+                                    <li>Using SOF's official sample papers</li>
+                                </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="sample-questions" class="info-section">
+            <h2>Sample Questions</h2>
+            <div class="question-container">
+                <div class="question-nav">
+                    <button id="prevQuestion" disabled>Previous</button>
+                    <span id="questionCounter">Question 1 of 5</span>
+                    <button id="nextQuestion">Next</button>
+                </div>
+                <div id="question-container">
+                    <!-- Questions will be loaded by JavaScript -->
+                </div>
+                <button id="checkAnswer" style="display: none;">Check Answer</button>
+                <button id="nextBtn" style="display: none;">Continue</button>
+                <div id="explanation" class="explanation"></div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="contact-info">
+                <h3>Contact SOF</h3>
+                <p>Email: info@sofworld.org</p>
+                <p>Phone: +91-11-40589400</p>
+                <p>Website: <a href="https://sofworld.org" target="_blank">sofworld.org</a></p>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i>FB</i></a>
+                    <a href="#" aria-label="Twitter"><i>TW</i></a>
+                    <a href="#" aria-label="Instagram"><i>IG</i></a>
+                    <a href="#" aria-label="YouTube"><i>YT</i></a>
+                </div>
+            </div>
+            <div class="quick-links">
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">Results</a></li>
+                    <li><a href="#">Awards</a></li>
+                    <li><a href="#">School Registration</a></li>
+                    <li><a href="#">Privacy Policy</a></li>
+                    <li><a href="#">Terms & Conditions</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 INFOMO EDUCATION. All rights reserved.</p>
+        </div>
+        <div class="back-to-top" id="backToTop">↑</div>
+    </footer>
+
+    <script>
+        // Syllabus data
+        const syllabusData = {
+            "1-4": {
+                title: "Syllabus for Classes 1-4",
+                content: `
+                    <h3>Section 1: Logical Reasoning (10 Questions)</h3>
+                    <ul>
+                        <li>Patterns</li>
+                        <li>Analogy and Classification</li>
+                        <li>Geometrical Shapes</li>
+                        <li>Alphabet Test</li>
+                        <li>Coding-Decoding</li>
+                    </ul>
+                    
+                    <h3>Section 2: Science (20 Questions)</h3>
+                    <ul>
+                        <li>Plants and Animals</li>
+                        <li>Human Body</li>
+                        <li>Food and Nutrition</li>
+                        <li>Weather and Seasons</li>
+                        <li>Matter and Materials</li>
+                        <li>Basic Physics Concepts</li>
+                    </ul>
+                    
+                    <h3>Section 3: Achievers Section (5 Questions)</h3>
+                    <p>Higher-order thinking questions from Science syllabus</p>
+                `
+            },
+            "5-10": {
+                title: "Syllabus for Classes 5-10",
+                content: `
+                    <h3>Section 1: Logical Reasoning (10 Questions)</h3>
+                    <ul>
+                        <li>Verbal and Non-Verbal Reasoning</li>
+                        <li>Series Completion</li>
+                        <li>Analogy</li>
+                        <li>Classification</li>
+                        <li>Coding-Decoding</li>
+                    </ul>
+                    
+                    <h3>Section 2: Science (35 Questions)</h3>
+                    <ul>
+                        <li>Physics: Motion, Force, Light, Sound, Electricity</li>
+                        <li>Chemistry: Matter, Atoms, Elements, Compounds</li>
+                        <li>Biology: Cell Structure, Human Physiology, Plant Life</li>
+                        <li>Environmental Science</li>
+                        <li>Earth and Universe</li>
+                    </ul>
+                    
+                    <h3>Section 3: Achievers Section (5 Questions)</h3>
+                    <p>Advanced concepts and application-based questions</p>
+                `
+            },
+            "11-12": {
+                title: "Syllabus for Classes 11-12",
+                content: `
+                    <h3>Physics & Chemistry (25 Questions)</h3>
+                    <ul>
+                        <li>Mechanics</li>
+                        <li>Thermodynamics</li>
+                        <li>Electromagnetism</li>
+                        <li>Modern Physics</li>
+                        <li>Chemical Bonding</li>
+                        <li>Chemical Reactions</li>
+                        <li>Periodic Table</li>
+                    </ul>
+                    
+                    <h3>Mathematics/Biology (20 Questions)</h3>
+                    <ul>
+                        <li>Algebra</li>
+                        <li>Geometry</li>
+                        <li>Calculus (for Math stream)</li>
+                        <li>Genetics</li>
+                        <li>Ecology (for Bio stream)</li>
+                        <li>Biotechnology</li>
+                    </ul>
+                    
+                    <h3>Achievers Section (5 Questions)</h3>
+                    <p>Higher-order thinking and application questions</p>
+                `
+            }
+        };
+
+        // Sample questions data
+        const sampleQuestions = [
+            {
+                question: "Which of these is NOT a sense organ?",
+                options: ["Eyes", "Ears", "Liver", "Skin"],
+                correct: 2,
+                explanation: "Liver is an internal organ responsible for filtering blood and processing nutrients, while eyes, ears, and skin are sense organs."
+            },
+            {
+                question: "What comes next in the pattern: 2, 4, 6, ___?",
+                options: ["7", "8", "10", "12"],
+                correct: 1,
+                explanation: "This is a simple arithmetic sequence where each number increases by 2. So after 6 comes 8."
+            },
+            {
+                question: "Which planet is known as the Red Planet?",
+                options: ["Venus", "Mars", "Jupiter", "Saturn"],
+                correct: 1,
+                explanation: "Mars is called the Red Planet because of its reddish appearance due to iron oxide (rust) on its surface."
+            },
+            {
+                question: "What is the chemical symbol for Gold?",
+                options: ["Go", "Gd", "Au", "Ag"],
+                correct: 2,
+                explanation: "The chemical symbol for Gold is Au, derived from its Latin name 'Aurum'. Ag is for Silver (Argentum)."
+            },
+            {
+                question: "Which of these is NOT a state of matter?",
+                options: ["Solid", "Liquid", "Gas", "Energy"],
+                correct: 3,
+                explanation: "The traditional states of matter are solid, liquid, and gas. Energy is not considered a state of matter."
+            }
+        ];
+
+        // DOM Elements
+        const classSelect = document.getElementById('classSelect');
+        const syllabusContent = document.getElementById('syllabusContent');
+        const registerBtn = document.getElementById('registerBtn');
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const nav = document.querySelector('nav');
+        const backToTop = document.getElementById('backToTop');
+        const accordionBtns = document.querySelectorAll('.accordion-btn');
+        const downloadBtns = document.querySelectorAll('.download-btn');
+        const countdownTimer = document.getElementById('countdown-timer');
+        const prevQuestionBtn = document.getElementById('prevQuestion');
+        const nextQuestionBtn = document.getElementById('nextQuestion');
+        const questionCounter = document.getElementById('questionCounter');
+        const questionContainer = document.getElementById('question-container');
+        const checkAnswerBtn = document.getElementById('checkAnswer');
+        const nextBtn = document.getElementById('nextBtn');
+        const explanationDiv = document.getElementById('explanation');
+        const infoSections = document.querySelectorAll('.info-section');
+        const timelineItems = document.querySelectorAll('.timeline-item');
+
+        // Current question index
+        let currentQuestion = 0;
+        let selectedOption = null;
+
+        // Event Listeners
+        document.addEventListener('DOMContentLoaded', () => {
+            // Load default syllabus
+            updateSyllabus();
+            
+            // Initialize sample questions
+            showQuestion(currentQuestion);
+            
+            // Set up countdown timer
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
+            
+            // Create floating particles
+            createParticles();
+            
+            // Set up scroll events
+            setupScrollEvents();
+            
+            // Set up mobile menu
+            setupMobileMenu();
+            
+            // Set up accordion
+            setupAccordion();
+            
+            // Set up back to top button
+            setupBackToTop();
+            
+            // Set up download buttons
+            setupDownloadButtons();
+        });
+
+        // Class selection change
+        classSelect.addEventListener('change', updateSyllabus);
+
+        // Navigation smooth scrolling
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                document.querySelector(targetId).scrollIntoView({
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu if open
+                if (nav.classList.contains('show')) {
+                    nav.classList.remove('show');
+                }
+            });
+        });
+
+        // Register button click
+        registerBtn.addEventListener('click', () => {
+            document.getElementById('registration').scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+
+        // Question navigation
+        prevQuestionBtn.addEventListener('click', () => {
+            if (currentQuestion > 0) {
+                currentQuestion--;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        nextQuestionBtn.addEventListener('click', () => {
+            if (currentQuestion < sampleQuestions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        checkAnswerBtn.addEventListener('click', checkAnswer);
+        nextBtn.addEventListener('click', () => {
+            if (currentQuestion < sampleQuestions.length - 1) {
+                currentQuestion++;
+                showQuestion(currentQuestion);
+            } else {
+                // Reset to first question if at the end
+                currentQuestion = 0;
+                showQuestion(currentQuestion);
+            }
+        });
+
+        // Update syllabus content based on selected class
+        function updateSyllabus() {
+            const selectedClass = classSelect.value;
+            const data = syllabusData[selectedClass];
+            
+            // Add active class to trigger animation
+            syllabusContent.classList.add('active');
+            
+            // Set content after a small delay to allow animation
+            setTimeout(() => {
+                syllabusContent.innerHTML = `
+                    <h3>${data.title}</h3>
+                    ${data.content}
+                `;
+            }, 300);
+        }
+
+        // Show question
+        function showQuestion(index) {
+            const question = sampleQuestions[index];
+            
+            // Update question counter
+            questionCounter.textContent = `Question ${index + 1} of ${sampleQuestions.length}`;
+            
+            // Disable/enable navigation buttons
+            prevQuestionBtn.disabled = index === 0;
+            nextQuestionBtn.disabled = index === sampleQuestions.length - 1;
+            
+            // Reset selected option
+            selectedOption = null;
+            
+            // Hide check answer and next buttons
+            checkAnswerBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            explanationDiv.style.display = 'none';
+            
+            // Create options HTML
+            const optionsHtml = question.options.map((option, i) => `
+                <div class="option" data-index="${i}">${option}</div>
+            `).join('');
+            
+            // Set question HTML
+            questionContainer.innerHTML = `
+                <div class="question">${question.question}</div>
+                <div class="options">${optionsHtml}</div>
+            `;
+            
+            // Add event listeners to options
+            document.querySelectorAll('.option').forEach(option => {
+                option.addEventListener('click', function() {
+                    // Remove selected class from all options
+                    document.querySelectorAll('.option').forEach(opt => {
+                        opt.classList.remove('selected');
+                    });
+                    
+                    // Add selected class to clicked option
+                    this.classList.add('selected');
+                    selectedOption = parseInt(this.getAttribute('data-index'));
+                    
+                    // Show check answer button
+                    checkAnswerBtn.style.display = 'block';
+                });
+            });
+        }
+
+        // Check answer
+        function checkAnswer() {
+            if (selectedOption === null) return;
+            
+            const question = sampleQuestions[currentQuestion];
+            const options = document.querySelectorAll('.option');
+            
+            // Mark correct and incorrect answers
+            options.forEach((option, i) => {
+                if (i === question.correct) {
+                    option.classList.add('correct');
+                } else if (i === selectedOption && selectedOption !== question.correct) {
+                    option.classList.add('incorrect');
+                }
+            });
+            
+            // Show explanation
+            explanationDiv.innerHTML = `<strong>Explanation:</strong> ${question.explanation}`;
+            explanationDiv.style.display = 'block';
+            
+            // Hide check answer button and show next button
+            checkAnswerBtn.style.display = 'none';
+            nextBtn.style.display = 'block';
+        }
+
+        // Countdown timer
+        function updateCountdown() {
+            const examDate = new Date('November 13, 2025').getTime();
+            const now = new Date().getTime();
+            const distance = examDate - now;
+            
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            if (countdownTimer) {
+                countdownTimer.innerHTML = `
+                    ${days}d ${hours}h ${minutes}m ${seconds}s
+                `;
+            }
+        }
+
+        // Create floating particles
+        function createParticles() {
+            const particlesContainer = document.getElementById('particles');
+            if (!particlesContainer) return;
+            
+            const particleCount = 30;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size between 5 and 15px
+                const size = Math.random() * 10 + 5;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                
+                // Random opacity
+                particle.style.opacity = Math.random() * 0.5 + 0.1;
+                
+                // Random animation duration and delay
+                const duration = Math.random() * 20 + 10;
+                const delay = Math.random() * 5;
+                particle.style.animation = `float ${duration}s linear ${delay}s infinite`;
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+
+        // Scroll events for animations
+        function setupScrollEvents() {
+            // Header scroll effect
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 50) {
+                    document.querySelector('header').classList.add('scrolled');
+                } else {
+                    document.querySelector('header').classList.remove('scrolled');
+                }
+                
+                // Show/hide back to top button
+                if (window.scrollY > 300) {
+                    backToTop.style.display = 'flex';
+                } else {
+                    backToTop.style.display = 'none';
+                }
+                
+                // Section visibility
+                checkSectionVisibility();
+            });
+            
+            // Initial check
+            checkSectionVisibility();
+        }
+
+        // Check section visibility for animations
+        function checkSectionVisibility() {
+            infoSections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (sectionTop < windowHeight - 100) {
+                    section.classList.add('visible');
+                    
+                    // Special handling for timeline items
+                    if (section.id === 'dates') {
+                        timelineItems.forEach((item, index) => {
+                            setTimeout(() => {
+                                item.classList.add('visible');
+                            }, index * 200);
+                        });
+                    }
+                }
+            });
+        }
+
+        // Mobile menu setup
+        function setupMobileMenu() {
+            if (mobileMenuBtn) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    nav.classList.toggle('show');
+                });
+            }
+        }
+
+        // Accordion setup
+        function setupAccordion() {
+            accordionBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    this.classList.toggle('active');
+                    const content = this.nextElementSibling;
+                    
+                    if (content.style.maxHeight) {
+                        content.style.maxHeight = null;
+                    } else {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                    }
+                });
+            });
+        }
+
+        // Back to top button
+        function setupBackToTop() {
+            backToTop.addEventListener('click', () => {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        }
+
+        // Download buttons
+        function setupDownloadButtons() {
+            downloadBtns.forEach(btn => {
+                btn.addEventListener('click', function() {
+                    const resourceType = this.parentElement.querySelector('h3').textContent;
+                    alert(`Downloading ${resourceType}. This would link to actual files in a real implementation.`);
+                });
+            });
+        }
+    </script>
+</body>
+</html>
