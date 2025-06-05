@@ -1,0 +1,1523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NSEB - National Standard Examination in Biology</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2e7d32;
+            --primary-dark: #1b5e20;
+            --primary-light: #81c784;
+            --secondary: #ff8f00;
+            --dark: #263238;
+            --light: #f5f5f5;
+            --white: #ffffff;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: var(--white);
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        header.scrolled {
+            padding: 0.5rem 0;
+            background: rgba(46, 125, 50, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo img {
+            height: 50px;
+            transition: var(--transition);
+        }
+
+        header.scrolled .logo img {
+            height: 40px;
+        }
+
+        .logo-text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            font-size: 1.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--secondary);
+            transition: var(--transition);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        nav a:hover {
+            color: var(--secondary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 2rem;
+            margin-top: 72px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero h1 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: var(--white);
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: var(--transition);
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            box-shadow: var(--shadow);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background-color: #ff9800;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--white);
+            margin-left: 1rem;
+        }
+
+        .btn-outline:hover {
+            background: var(--white);
+            color: var(--primary);
+        }
+
+        /* About Section */
+        .section {
+            padding: 6rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+        }
+
+        .section-title h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--secondary);
+            margin: 0 auto;
+            border-radius: 2px;
+        }
+
+        .about-content {
+            display: flex;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+
+        .about-image {
+            flex: 1;
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transform: perspective(1000px) rotateY(10deg);
+            transition: var(--transition);
+        }
+
+        .about-image:hover {
+            transform: perspective(1000px) rotateY(0);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* Eligibility Section */
+        .eligibility {
+            background-color: var(--white);
+        }
+
+        .eligibility-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .eligibility-card {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border-top: 4px solid var(--primary);
+            transform: translateY(0);
+        }
+
+        .eligibility-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .eligibility-card i {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+
+        .eligibility-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-dark);
+        }
+
+        /* Syllabus Section */
+        .syllabus {
+            background-color: var(--light);
+        }
+
+        .syllabus-container {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 2rem;
+            box-shadow: var(--shadow);
+        }
+
+        .syllabus-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: var(--light);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .tab-btn.active {
+            background: var(--primary);
+            color: var(--white);
+        }
+
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .syllabus-list {
+            columns: 2;
+            column-gap: 3rem;
+        }
+
+        .syllabus-list li {
+            margin-bottom: 0.8rem;
+            break-inside: avoid;
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .syllabus-list li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 6 Free';
+            font-weight: 900;
+            color: var(--primary);
+            position: absolute;
+            left: 0;
+        }
+
+        /* Cutoff Section */
+        .cutoff {
+            background-color: var(--white);
+        }
+
+        .cutoff-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 2rem;
+            box-shadow: var(--shadow);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .cutoff-table th, .cutoff-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .cutoff-table th {
+            background-color: var(--primary);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        .cutoff-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        .cutoff-table tr:hover {
+            background-color: #e6f7e6;
+        }
+
+        /* Timeline Section */
+        .timeline {
+            position: relative;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 6px;
+            background-color: var(--primary-light);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -3px;
+            border-radius: 3px;
+        }
+
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+
+        .timeline-content {
+            padding: 20px;
+            background-color: var(--white);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .timeline-content::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: var(--white);
+            top: 20px;
+            z-index: 1;
+            transform: rotate(45deg);
+            box-shadow: 1px -1px 1px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-content::after {
+            right: -10px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-content::after {
+            left: -10px;
+        }
+
+        .timeline-date {
+            position: absolute;
+            width: 120px;
+            background-color: var(--secondary);
+            color: var(--white);
+            top: 15px;
+            border-radius: 20px;
+            padding: 0.3rem 1rem;
+            font-weight: 600;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .timeline-item:nth-child(odd) .timeline-date {
+            right: -150px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-date {
+            left: -150px;
+        }
+
+        .timeline-circle {
+            position: absolute;
+            width: 25px;
+            height: 25px;
+            background-color: var(--white);
+            border: 5px solid var(--primary);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+
+        .timeline-item:nth-child(odd) .timeline-circle {
+            right: -17px;
+        }
+
+        .timeline-item:nth-child(even) .timeline-circle {
+            left: -17px;
+        }
+
+        .timeline-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary);
+        }
+
+        /* Resources Section */
+        .resources {
+            background-color: var(--light);
+        }
+
+        .resource-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .resource-card {
+            background: var(--white);
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+
+        .resource-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .resource-img {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .resource-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .resource-card:hover .resource-img img {
+            transform: scale(1.1);
+        }
+
+        .resource-content {
+            padding: 1.5rem;
+        }
+
+        .resource-content h3 {
+            margin-bottom: 0.5rem;
+            color: var(--primary-dark);
+        }
+
+        .resource-content p {
+            margin-bottom: 1rem;
+            color: #666;
+        }
+
+        .resource-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--primary);
+            font-weight: 600;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .resource-link i {
+            margin-left: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .resource-link:hover {
+            color: var(--primary-dark);
+        }
+
+        .resource-link:hover i {
+            transform: translateX(5px);
+        }
+
+        /* FAQ Section */
+        .faq {
+            background-color: var(--white);
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+
+        .faq-question {
+            background: var(--primary);
+            color: var(--white);
+            padding: 1.5rem;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: var(--transition);
+        }
+
+        .faq-question:hover {
+            background: var(--primary-dark);
+        }
+
+        .faq-question i {
+            transition: var(--transition);
+        }
+
+        .faq-answer {
+            background: var(--white);
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+
+        .faq-item.active .faq-question i {
+            transform: rotate(180deg);
+        }
+
+        .faq-item.active .faq-answer {
+            padding: 1.5rem;
+            max-height: 500px;
+        }
+
+        /* Contact Section */
+        .contact {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            text-align: center;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 2rem;
+            border-radius: 10px;
+            width: 250px;
+            transition: var(--transition);
+        }
+
+        .contact-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .contact-card i {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            color: var(--secondary);
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--dark);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+
+        .footer-col h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+
+        .footer-col h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 2px;
+            background: var(--secondary);
+        }
+
+        .footer-col p {
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: var(--white);
+            text-decoration: none;
+            opacity: 0.8;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .footer-links a i {
+            font-size: 0.8rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--white);
+            transition: var(--transition);
+        }
+
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--white);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            box-shadow: var(--shadow);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+
+            .timeline::after {
+                left: 31px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+
+            .timeline-circle {
+                left: 18px !important;
+            }
+
+            .timeline-date {
+                position: relative;
+                top: 0;
+                left: 0 !important;
+                right: auto !important;
+                margin-bottom: 1rem;
+            }
+
+            .timeline-content::after {
+                display: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                padding: 0 1rem;
+            }
+
+            nav ul {
+                position: fixed;
+                top: 72px;
+                left: -100%;
+                width: 100%;
+                height: calc(100vh - 72px);
+                background: var(--primary-dark);
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                gap: 3rem;
+                transition: var(--transition);
+                z-index: 999;
+            }
+
+            nav ul.active {
+                left: 0;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .btn-group {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .btn-outline {
+                margin-left: 0;
+            }
+
+            .section {
+                padding: 4rem 1rem;
+            }
+
+            .section-title h2 {
+                font-size: 2rem;
+            }
+
+            .syllabus-list {
+                columns: 1;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .logo-text {
+                font-size: 1.2rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .section-title h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header id="header">
+        <div class="header-container">
+            <div class="logo">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKMAAACUCAMAAADIzWmnAAAAhFBMVEX///8jHR8AAAD6+vr39/f09PS8vLynpqfw8PDp6ent7e0LAADi4uLl5eXIyMjd3d3X19fQ0NDCwsJ1dXVZWVmNjY0cFRezs7OcnJytra2VlZUXDhGBgYFmZmZeXl5ubm5QUFBISEgvLy83NzdAQEAmJiYQDQ4bGhoPAQgvKStLREY4MjRSe4EJAAAdhklEQVR4nLVch5ajOLPGIhmwyTln6L/f//1uKSKw3dOzu1fn7PbYBvFRuUolKcpfDMv8Wlc0R971B+2hkr+PLt0aX1GMOsmz4M0Mj3pAa7rkj7957F8M3ZxRhebief7aDxXFQ+RLfZ4zI15tJdnqbijxV6qvnS+3ix5mGXP7/wOiMSG0jqEufUWIF6FMeSAX/7NY4Y+3JEoU3xWV/OpNU2/eTxNpwbwi56v4zxEGDbx9nMlfuUlfAz9LhAx9yPE39QhvoPaN0o2l6RICZsgsl8FW7pZ8q4Fn68P/FKGW3By0nelhoDafUaAUS4uCusFfJSNcoQ6N0k7d0BBuliu+MlCy8XSznn2hda3PBP5XI5yQc6slLgemYk21otzjb8Vf3GhpNvy1i0y4GP431xxLs5pBPD60ZgL0p5csF8e5Zep/g/BeAmMaV3y2AiVBSoBlTzFXT1kzpUeIyWZdr72qjhzjY+m6cTZAqQxMz1A5plH8COatTzLwT4c/OBXKhXaqxTKoATK8BYtgsBkK6MhjQD7+UTO6JgN1aXJ2tYs81QamJ2g29TbWtVESaTVbd2dylX871AKtqBEG0TJXlKuK2vZKM8Gz8/WhRImqPF3t7e3mQm0MivJ+BSFQhwQmEQy2a5i9fH/r7yHWYLTLQxLrpdyw0TA330exWSN45PMHdlk+wZMBl/Ua2fBytZLNkmibMH/3r1THmhGaBTNgZltVugmchI5KxR2m3vjdPHWvKnaPdb+OW9TINtbvkTO+OK7fD3dEqOVUUvOZGLQnwsIWfT2ZDf/VeFALhAWzgT+PshSeUu/QumQ/3PvjCG8VigQfNFDeBKOKEAiQX+o/3PluBNgaaijSMayvGAk/oyaoWv+h1zHhVpPPA//lsbFg9X2s9U+3/TiiDUcT1pgoBbUEZBhLhQX770e+Vgt/Ox+jyhDwC5WqYv5SCt+MBAcaPnDc9VbJ6IQA8h+8eI6qRcxigIqALazHtkTNPwaIB4iJ3pdKuwVggVpuRsFZrX9PSfAtI2eGihEXoJgbiLb/SVE0ywvc0MiyzAjdwLM+yusde8o1wvpzMOQx76j+O8eYr6ugYt5CUNsg+K//dLkV5lE7TLfKQWRUt2loo9J4H8qaKHeBtSEqpS+9af07dhfAaG6z+jECXQQiamX/hja6ZXQbRYac9Hb7WpblVu3kIwScTfZ4vSmbl/b5QJ2iF3HEuaWP6wn0H0a4VSOnYsbAeqhzX8nim02KnBWhvY8gPcBcDgLXNTKzjHoAujpobfOXrEHz1fs021aP6g7xMNKfDzvyx+Ft1SYkpR7w//NEMfLrdaoRj5haa28Gz/vV62r3p2/GK6bm11BcianWYHt6CN/VZOZeIhir9Zdxr7VWkjCT+F/p+hef+khWtKO0Td7lVscIkvYGMRiqL/7Oc0Eg8WOo/6HXwoW+8osBYalsBtQN++ehuyKsvyFkuSXun92NHuQjXPtVXx9fTPjmZ3LEJBBk9b8JKGvkMCOgJ8tYqI8RNdN4vvNZg6Dd4rMt1+72A4QxBJn0n7Z+MiQuENNZuzMt/c1QyStaAedS6aDmzxYoQ2tMaaM3YxmBybbKqDzlq7q5oH3t5ODUC82k+a6QGOnQlVkgJahBtDlOVZ5EBgKMCQTQrdDE0XcIvcj9dfjglRggc7UgBcF8P7+ZHzs76oNDR/wknsH8VGB5jpHukJ8OXSFgqn4D8juclMJoahCkOr1HPXuGvazrHyJzu983donWsVzvzGYdohTpSXqQYKqd4ElAgbJDIUxW0MK90Tn71wfLRN5z5dGZ91VNP1cxErQLfalH/G7ZeLojiOExosigFw0AfI+PD2Bkwimjm9ULKVFgL4kUYZgIXRX0NAK0zuKDizpb0dv2NCOE9r3wDObXWv0MkLE9jQPGS69FOK9RpKd4Sjk9JG2KHfRDYHX/X7UyAEFogSXY6pNGazWElJzO93xBvwDIiSlQ5suJ32o0u/UiK7y1VF+fuZ073GPmCD1w6Nwn8tUNqjYuN2H8gckpGS9f77eIva375SDJJejtVZUL5HyM0/xqbanZgfxZD5rm/Dbe4DgTm9sG6X+PcJz7Pu6HKX25wEEFtQVq7+yT5J1s+lA1YVDVbkWfdDve+U9RA7I8jIOs0o/BwQJKRvbtSLAkgq6Nb2mQf989o+xfRIEn6iAz6/TqQgtu9R7w83uI4aFQddpCtuUjaZ4nBKERFSlIug9UFZrNWXyUvaievYB0JqbTiRRCi3GfuY8Be/Y2AroP1RcXZbXDYXwu0dGbd4eFoL5EoHRvMvx2AuMpTM1XepFM84TCKNNqvFDSWMaFIdOH/a2RzITCqBZ2LVGNjqwXbuKhfDDu0jMNImIfMN4HDG+b0Srxu6ZCCfnSJHtYq0atn3FuF/s7l2jP+0DJCFQBsfHG6bBSGtisiL3tJpNlpA8UenxJnAiB0d1t00OBnJZSqET7fGg3RDxAES1U+QPX22sAZHIR8JYk8OpIViwISLmomqtsVqqBYow5hGtKssDVuGQQNmgTlGRBLQRYjXD6SUSRB0wAXPQmTwTLylDMkKSh2ypFKKaz95TGxtkoVjF9SOR8wJgjTEdMGNBIATImILXGOXCoZKIHxFkM9lRt17I+kJFJXz4baFQey+FVwUNO9NWLi6aiThVQ3mJ8ACERvVdNBMOdgYrdIAf8EBhFaModgxPyasj12OFphTejxgJJEgG2NXOTGm4X/8GtkfEJo95VN8Q11J3EZTH5wr+tR8kMaLiMuZIM9OO9RcN5lSXcj7xRs9Ws3sTDsDBSHXteIQpI7ieMSr7fjhTF6i7XZY7TcVrYKNGz6u5tjIFmhU7VNLVzZDeu1UMp4loDOZSj9sB4VQkl5QbiwTXiBaML30l2MHfS05215KvrVtPjWjFZkUmfnUEOri3AccJ8ZFLqkiKuh2T2FDW1UBFmcx+3Txjv0wkjpJkpm4V8q0EgxVXDA4kqoiPoB2cjuyLxEQKJpou67hDXiCuTSSFid2YKljFu2H36AaPSV+gU0/oj5UJ6I9hctIsiV76e7rSln2BMPLStUVx3aIpFyTJYmBHzUibtniJhZEp4b6tPGOH1z3l9MFGvsxN9A2lPuW4/LqWUxlkO8xNunGn+MD69xdU4wUFQb0SntY6gWFts7ATGij1ei5h/dIg3UpOhT9j0BrpG1f68Si/oj3vPLbkZRVHXNLHLb60OranRwjlvt2MsZQdg7illmGWkNBEYb1zUEkfGaI9rysn3ROha7L5TSqYpcRMQTnOuuW3vdHXLS5zPgds20JheKvVD9CqRHKSJ0ENbUundOcb0m79afsJoTaBCTHy0V4zAbjIb9TLaXolgUX2MwT0WAVGNRPTjOrsUZOjRMWnIvRXT6StGkboXlYzxOWI1Z4b/K711xsWtZfSNFwIGUoMjWIzmaRam2zhMZIm2U5GjFpX6zlnIi/jL7S1GUZwxUhnjYyRKQc0ZqNOOlvIUDhobuxqz0hqcWAQHGZIKPvdFRN3TPssTHNbR/2LSmOzvMcacPu7tFWNKQy9iTDd0CrvDjYJcCW1KZ+dRlrudHGC8O/QfNhLBrXIeCaLc8I/48ISxErHVg0oYw+gxshOtKZnpXySQLrvAIdrxHMVCgAH6en88OJAMMQeQcQNuRWUoB5batvcM6+09RuGc7PkNxp3IDI+VHEl1AiE7hBHdjhhDdE0143GpmWQ8Ofk6Z6XMfbbLMs61wYljcJU8IrILRoyIRH5qL2Nk4kuDK555UQtjmvhyf+TzEVkKJK8dodjMJiag2uxQKg0sZiA8y0eEuAK1O105Lz5ixE8oiOeP32CsSEwTnjCW6Ct/gmiw+TYaEU4V1wiPkMXmSTRYH3yBNx4vEXY96rlWWyPLYdrqA0YH31gvWMqb6g1GolIuM53UleUoRbOrzzxz2DOKnEtrOON79ImZdWACRpul3KG2COh8RDzFSn8QwvOKEX+KNrqeKmEM6M8pXptVAu7Kc35riqJJYCTmJ6gcRqcnMnSMmZedbsR25twsWAjynEyUfYHOsycjesWIOaI1lauIbIFhZG9FFjADHhKVh9wcuWz6hXlpx6hjWhBhk2jw8PUxkBptjVg+pVpBPqwbL3Lg+/CVerd/xOhhR1rR1YFXOm7r4/hw0aBjRsKr2vlmqqxlcuikNthNQ95wCm/9jJkfn9H/KdcZLhh1UsDAIuW/wUjeAZIWhpHUEIwrRhpcZ7tUhbK9wDVtwUxLeX6f8y8/E0EVra268qwXvYanBl9EYp4yRu51CEZBx/cYN9IZ9Ni44npRM0yI224IVqqH4jnco6u2b/Y31Nz5G2w6/fsJY/qF8VQOFjT1HcYTr3eCMbxipC+iLHvMaDS0yZSIlRMDo4U8lqq1miwQgKcZ95fci09yMnjCWP2PPJTygWZd1LmF9OKUWCWuMzvRijcYiZlpdnTwsjtE0sMhcsht9nNChW7MwpwjFlOfJj1hJOlGhiiBaNZFpYtjJAY6YEpcNbJFP8ZOAJUIHYWRpCWL8Xjo2AVBGMxM4gMC4Fq8wZPVf/zPGIk1MRF1J/16YGSRWkUSCy7PFakRh87tMipSdHSFBD6CrEELmhkqvKoNOZHAH/bHogH4UKIy2Q8YTUIACoWWfE4Y95OWVGT5zH0pUdMg9CmqopCIjl1i8graF5idCN0OQVCziYe7BaJpdbLLE54x4peoHfoQ6miYJWGOMZdfsiJ1+jcYJ0wWW9TJrOdpqbGHqKJFpwBX5c4QBIQYoeg06Rmjh43snhLza75ivJ0StGp4j/FGPLI+cTN993yyMsrEs3O+IephSh9C8l/XSc4wgskhVzWfMe64VQqXHj3BUoqRZjcsDk/+hHHHc+oxYuloNq5oQyy6JjKkfDsNF8a474eZFXMhAR8wWq091aFkjOm3jbtGIV3BzKIKSycDPYLBrDKvTVLIbzCSaExrWC1NyZYw3LIHVyGglfLlRDKvNZ6htIjUP+/xR4yEMDipJXJJwxta/fBqeN02ouajrzhG+wNGbCDVCLGlVwMyWfBwHGN5xlhEbSTqRzGtqIpKzitGBxtlHbGwwCdunTFF1e86l3yeC6XTJ4xYoSG0YXXrEDBC0Mf9NwRUyo0vaWBqN70oADCMz+EzRmxaCEbMrMcsYZTGnduuzxhzhpFqSbjoyv9ChQe1J4whcnXtni/abzGSuS3ECGERnu4vGIUPIOKrhPsVIsOYcIyPQlWemsLj2FzmdVYRUeLL1Qyj9QPGgkEglu3evMdo/hIj0JG1SNj2XRNFsQvGm2ZbtssL1DHVmR/kkdTksKcjyZ0WvcfIK2oc4+t6MpVH0BnKQchthqaJ+Do+1hlhezI0zNM08kyiRaRzS/+s118BeyY1ivX+FqPgw2eMmB9ah3omHJnZbO3EF8Gw7fkft+F+UpZ5bposDI/QN1lXaT/ZcFqQwv+kwEh57wWjyKR/wEjsY8vtI56qUQK+BoZteOuciz28oJIgh1D7o59Jif/FXqQis+dv6ViI2z9ipH5mFvUUrVw7JWOWiPjCI6bQ7n6WxAtz7fmf/HUa0+ZcwDgJNFeMai10JCWrui+5AsgMtoS2aCQ1lrWb/YYXantnOGIzLUZobkXVOWQBXXIK+CSMtNjTrLj8TubGgledOkRwBU2IM6XjK0ZaaLV5OUXvm0AdjiL6F0j7EeOGgadHuIueDI/VsT/GjzR+jjFGsh4QvsMo5eYU4+u6Ow3tAl4213CjqhWIIttKujlFfQec801kkCqrhH+MwynBa+TsDuEEKaBcMMqJBsV4XXHEcbhCvudL134uVyBJriByLrKo4HoG32uV0kztYz5DuWEnENARrlvjC0Y9esFovmIkpIgcJnIhmixfRIhAInjkkbvaK7rNy8YloUML+fspL+RLlapKd0Xp0wWjagzS+j/z1/kLRpoXzjsr3Pe17s2r6CIiuetRA9D7KMkCUZMyEe1HSuRZZYzKZeCggmFM6hq3up5MwkeMmLX6xlIFDeHdOVrxxSYlNQCploLh3d2EVSMDtBeU+O8xOi8YN45RnRByrgHOB4xU4Vy+kq3hnueSZK9kkFrKUZNSLHBCaJtmaj0fM1Uaa3lb7zkWVfjoBR1tUbqTwRDPUb7Ue0i4ABaOaW65ovbe8+hRIzUpeDO+EpShNilEbU+LEKlxau/rZq+eGV9HXY433l4HxZhcMRLx1xvUMkKpbmarTXGq7Uk1UvV5aq7N9yoQnH3B+NqScbhFuap6YCTxYX2pAdA6qv99nk7gYDVSudZ8Gv5Cg3J/OqaUML7sJskFRvf2ZpD0R+0u8SOtpoFlf990zWrNyoA69e0F0zqRH97Ww9FLv1ghMBrp7XWQGgBexz0N2j/aONP7/mhWs4ewoHp/Qc4WbiT/dWB0XvY3uQJj9ibRB4x4E2e7nr7cSKpsoXNyKoZY+8iknoBHGB7Lj6KD4eg7EhjT75d+ME9gNN9ixPUeNT5jpGJYSggsNzxmFmtIlliLU7JpraR22dahXaSHwRAYq+Gl1ep5DiVfMOK6mdZfMOJZVHAyXNrcOa1msQwr1uKONU3SBZUe7xQ6O0H/+H5ZL6y6F/nQf4NxPmGkFrg4loD9jSDgnQOxqJyWiBpQlRqGQzbsmNl3EUQKjLRu96iTsuC7fjRhH/OXIuON1Ui1UVanbcPkAOM4c/aWDhUL+klaG+Zr7GyVozoSi5y1GAujLDCSIjguNDv71xCRfmAVHFLVH0+6DFJr1k+dutTwBFLXFqVSyhp7jFUQWPQqULmTWjjVsbqpxy9SPwVdU6VeI3WI68LlKYoxeYsxYqWXY3wR9g37JmTbdA4ROPUqiJ6P5xdKUySbKt6Qwd+f4sd6TQjKLQnpH1GbnWN8J4+i9CIGVWrRVkLkZcAIWNOT3POhuDyL0ephSORtD/rMmk55HpIWFCMtD/LlJWoYIM2kGOtfYVxH8oRhTeVui6Qf6mOFSFrzvnYrHCNjm2l4B0+K3wYwkhRdxOhUsIDzf4WRyo3zcaNHi6QepGtrlzS0eK2I1DzWjYEsAGNKArgHfyJd18gZRvUzRuvAyNpsvp3Bfv/oSy+XhfZP+xg8RHki9TjmgJHQSyzT0fpn9jPGRKG+iL0WXdyIr61eHwmndmj8tEUgQaIPkE8/pDS5FkleenvSt6AYo3cYicwci4/UgYAjaT8899pbqLif9/bZ/U7jI1vEPylTSakXBL9h6HCM72wPeYAIzai58Mfqm2Wq6tVvFZceTUVvRa8rG4HYHxUAX8hv1nI0Z5LbD3ohtpr+Ex1z3BUtiIpJpLWOaNorLsJ2b51Lr6vUM8wu6RNhtSAsocLriq7mlSjJUa8ikhPcKEYtehf3oEKNhK2i9fka8a5zRfu+7KJ47RlWlK/1lIx6nSd2eSoNN7OuWG/fp1CXgl8iXf53SjDq3TuMKT7kgt3ckrQuR87AHxGtxXkT5bS+9F4fPez0U95OpeC+NawbTQ1CQckKNeVRHiDO0IO4aviI8WgnYP3hxrKKnrpgKZBrSWFz+K6H/dgLQKiKG0FK0arljyuLl4xdPGo9WucpRqunGO/NW4x8ODRY9NeVtzAremyE071bn6rYC1C92Qsg7amAMfa9oubHq7gra6RR3OWtsGFe39uKYmx/woho5OlvR1CjmL0+ueDT2oF9VbzfZgiOcxHQvftQ1qM7CEEuEN+Q7d/eWBaCUW8oRvsnjIgeTuFP64HiPgdK1NjmqHs6x/J+A1942jTn4rWPehPqn62c3Za0P0I8mYhStJL2Bbv/iLFKKTAfSRAhySk1JWsSYSI/7fEhfknQLdxKVWv65NgWDpRkJzRoycteLXpjvRI6Wh8xoolvKpAgKkkTDJ1sCz30Wqlhw18r3tCZwXvYff9Uol78DJTkJbdwvJYbpsLzvI7xun+XX5Pud4rEPEF0x4cejPLZLt3+cc+ZtHevcJVwITaxPva4BKDdbNeZFm375fnkGACy1/7rAxFnKit6jVbhXnB44wxR0kzHsSzmD3v38JYutgdSBaqR5UDlLh13EAwIcTVyP+wvTNP0TdEM7DZiWxW9GB9LJZ5p9WUC9rLPHxNLNa1l/RjgKGQjOQ92W4zlPuVt3B01BLtD1cqr+sX0q52kZKxbzB6bbTvp1VdwVhm3/ZbgbUUteB6NydnPe0npnlwKgZghCJ0azW7xuQolaQBVkg1vC6UX62b/YSfklctpzW7x8UuyQCCbTFuLiAJ7kviZhxN/P+7xnkoxZ53h48m0uMFpBrUG7oKchbf+2WH/p33DeHtzwlNwc3IcvtFInTKIWzvjQjT/j3ub5T3iWDNIoh9o9VzrOn+7enEgSOKZ2bPsv9D+AWeK9qnj3kQP4fW2o0YXmc+mwWf7yJGjDSb0j6c3ZWgXNz2xuvgLyvV8et5FrEb2YMe81KpoQdEs6ErPdIWvhiQTcULWnjaXY/1eALCLTpuGf7PXXj6zQAkwHdvMcpIQTcFhD/QCeLZLh05od6+o52Xb1oqMdduWNnGPurBm9KvjLLlMsmCIB0tRw6jvat5FWjrOL84swF6XxxJ2pipaj3dJIdc8JRNqPoA3Q6V7PlntEYSGYYSBb8nBoBbkG1w9nTJ38Fs1OcMJP8dl55yZvzz7QbEqeUudF2GLZSrJMJz271hZCrxL4/J1/+95eHlDDtEwT5qglksxPbTpZKwDlP7uDI3LWSRGpGhLrhQr2KD5VLtVwxa0x0G32rDu7xik3i2j/sKHkSzx5UA4rR81pVjumix94Md+exYJcfniTBfb1ZpI8VZXV/JovkQjQd4ihM+YGaI8C/0ng6ren36Y5XXvkF/710NdrAj756gDUyZQQbj2+zNdaLQoaJZ/K2qfgJFEAD66n6/UvaKnp2bs6TgPfR/D6Id5vO306zn33x5fZo4WiJ8J8QWTgfvfnY1zPmMotHH043alB1FUchivnrdeQJ4bxfMNncdtiqPyzfFxQU8jvKQtJ/M48gGfMfSXpzWV4PgFh3x4Vy9WITM6JFr181Eqx9y9ICzMBG8Za7ooyYsw8N7Rz683/moP11eMhuVQj/kvj0HCI0crP/FDeWK09TLwU8iCBFxRF/vzq6aofKn47fC69WL+2Kd/dOYVZfdpLcuYOd3GsjFCNS86TzGS3x/h6EVLnk26mbwkzuH4D6iIBxjUk575iMvf9IjNrc+TIntsSfzjySHHcOuttl2z7/vw6kqM7R9RkcwKDJDOsjs2b3ozpBvNOPZRBpqYdUIxNE/SEfBOM5M9O/TqCfTD2ApjDZTzwT+QHq3/9Cw7vGEa4lEeBakGh/uIAO5z8Z7DchvCu2IKakc36UzCuvF8szYV3S2HLjK0slHqHGIWQ+llRPcO1PMfnwlIttWh14Mu7xsaTXOCtNgvx3jqy5EJmD0+gkPXS0Ci++Y8b9H0LCLFXDW3MUE41FWioz8g5/tfnK1IjsuACONaGkwStwNyZF9KlIPjrptbn4Su/7AhqjNMsay21fnSQdg0G494aqNmzsEi+NqUacfJoblTOf/ujErcMY4PTL28p2Yrj+Wp1Ik+gIkzbGUq87if5njto2biW2yLrwRSoSJRklrpoyC4F6T7C5RHTGThY1PzVzv/t8PrcU3hOk9dK9bk+YtmrMM4jp6iPfUu90LTPHK+KH9OWRhr/qCNvh/p6mXNWy2cFc1/ipt+Ne7gc1B7lkr1ZijurBuNWprKIx90LUY1OZ/2OQnrl9cQdET9XV+8JInBR0XnnTqgLCj5Vbj4i+FOkIjUJ6mEXLNOICVRciBb0SpZZD/nGeKi53HCSNjqepA0itpmmpnEofKQjnBV8Rm+yz8/SfJlaOXmoNWU/ANIVmQolauEYCE7UIbokTm1V3v2kdV50z0mC9AmVvZHLlluvcDHj/2XZyEr5EzpFZ3smqLfFUjs7VZXB8CRfA+ALvJtUZtVnren0SSQ5wbo6ljwbPF/e6Y0mRfnxqNx4jjuU8/Nx0qWhh+zFQ42GE3+K/1nBIQ+hZBaMEH+Nf73Z3PjuQtyxrn5vP5gUY8dxA+UKXovFFWNsPvQz9db5Izz7/+fM87J/Hij/+tZ8ayWVGuBCsCkktiL0j5qeM+/PSv+/wB+bDDCCoiMXgAAAABJRU5ErkJggg==" alt="IAPT Logo">
+                <span class="logo-text">NSEB</span>
+            </div>
+            <nav>
+                <ul id="nav-menu">
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#eligibility">Eligibility</a></li>
+                    <li><a href="#syllabus">Syllabus</a></li>
+                    <li><a href="#cutoff">Cutoff</a></li>
+                    <li><a href="#timeline">Timeline</a></li>
+                    <li><a href="#resources">Resources</a></li>
+                    <li><a href="#faq">FAQ</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+                <button class="mobile-menu-btn" id="mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1>National Standard Examination in Biology</h1>
+            <p>The gateway to International Biology Olympiad for talented students in India</p>
+            <div class="btn-group">
+                <a href="https://acrobat.adobe.com/id/urn:aaid:sc:AP:72fe6aee-1f86-4d0f-b5ff-6c325bec37f5" class="btn">Learn More</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSe2cTImlWNorYlfWtyRc2nPXX1PgtcW0Xuo3IoulBcuxlm9KQ/viewform?usp=sharing&ouid=111569093698559926642" class="btn btn-outline">Study Resources</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section" id="about">
+        <div class="section-title">
+            <h2>About NSEB</h2>
+            <p>Understanding the examination and its significance</p>
+        </div>
+        <div class="about-content">
+            <div class="about-text">
+                <h3>What is NSEB?</h3>
+                <p>The National Standard Examination in Biology (NSEB) is the first stage of selection of students in the Biology Olympiad Programme in India. It is organized by the Indian Association of Physics Teachers (IAPT) in collaboration with the Homi Bhabha Centre for Science Education (HBCSE).</p>
+                <p>NSEB serves as a platform to identify and nurture talented students in biology at the school level, providing them with opportunities to compete at national and international levels.</p>
+                <p>The examination tests conceptual understanding, logical reasoning, laboratory skills, and the ability to apply biological knowledge to solve problems. Top performers in NSEB are eligible to appear for the Indian National Biology Olympiad (INBO).</p>
+                <a href="#eligibility" class="btn">Check Eligibility</a>
+            </div>
+            <div class="about-image floating">
+                <img src="https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Biology Lab">
+            </div>
+        </div>
+    </section>
+
+    <!-- Eligibility Section -->
+    <section class="section eligibility" id="eligibility">
+        <div class="section-title">
+            <h2>Eligibility Criteria</h2>
+            <p>Who can participate in NSEB?</p>
+        </div>
+        <div class="eligibility-cards">
+            <div class="eligibility-card">
+                <i class="fas fa-user-graduate"></i>
+                <h3>Academic Qualification</h3>
+                <p>Students must be Indian citizens and currently enrolled in Class 12 or lower as of November 30th of the examination year. Students in Class 12 must not have completed their board examination before the NSEB date.</p>
+            </div>
+            <div class="eligibility-card">
+                <i class="fas fa-calendar-check"></i>
+                <h3>Age Limit</h3>
+                <p>Participants must be born on or after July 1st, 2004. Additionally, they must not have completed 20 years of age by June 30th of the year of the International Biology Olympiad (IBO).</p>
+            </div>
+            <div class="eligibility-card">
+                <i class="fas fa-school"></i>
+                <h3>Educational Institution</h3>
+                <p>Students must be enrolled in a recognized school/college in India. Those appearing from NIOS or through home-schooling are also eligible provided they meet other criteria.</p>
+            </div>
+            <div class="eligibility-card">
+                <i class="fas fa-medal"></i>
+                <h3>Previous Participation</h3>
+                <p>Students who have represented India in International Biology Olympiad (IBO) in previous years are not eligible to participate again. However, those who have participated in NSEB before but not reached IBO can participate again if they meet other criteria.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Syllabus Section -->
+    <section class="section syllabus" id="syllabus">
+        <div class="section-title">
+            <h2>Syllabus</h2>
+            <p>What topics are covered in NSEB?</p>
+        </div>
+        <div class="syllabus-container">
+            <div class="syllabus-tabs">
+                <button class="tab-btn active" data-tab="theory">Theory Syllabus</button>
+                <button class="tab-btn" data-tab="practical">Practical Skills</button>
+                <button class="tab-btn" data-tab="reference">Reference Material</button>
+            </div>
+            <div class="tab-content active" id="theory">
+                <p>The NSEB syllabus is broadly equivalent to the senior secondary level (Class 11 and Class 12) of CBSE Biology. The emphasis is on conceptual understanding and application of knowledge rather than rote memorization.</p>
+                <ul class="syllabus-list">
+                    <li>Diversity of Living Organisms</li>
+                    <li>Structural Organization in Plants and Animals</li>
+                    <li>Cell Structure and Function</li>
+                    <li>Plant Physiology</li>
+                    <li>Human Physiology</li>
+                    <li>Reproduction</li>
+                    <li>Genetics and Evolution</li>
+                    <li>Biology and Human Welfare</li>
+                    <li>Biotechnology and Its Applications</li>
+                    <li>Ecology and Environment</li>
+                    <li>Biomolecules</li>
+                    <li>Microbiology</li>
+                    <li>Immunology</li>
+                    <li>Bioinformatics</li>
+                    <li>Recent Advances in Biology</li>
+                </ul>
+            </div>
+            <div class="tab-content" id="practical">
+                <p>The practical component evaluates laboratory skills and the ability to apply theoretical knowledge to experimental situations. While NSEB doesn't include a practical exam, these skills are tested in subsequent stages.</p>
+                <ul class="syllabus-list">
+                    <li>Microscopy and specimen preparation</li>
+                    <li>Observation and identification of specimens</li>
+                    <li>Experimental design and execution</li>
+                    <li>Data collection and analysis</li>
+                    <li>Interpretation of experimental results</li>
+                    <li>Biological drawing and documentation</li>
+                    <li>Use of basic laboratory equipment</li>
+                    <li>Safety procedures in the laboratory</li>
+                    <li>Problem-solving using biological principles</li>
+                    <li>Critical analysis of biological data</li>
+                </ul>
+            </div>
+            <div class="tab-content" id="reference">
+                <p>While there is no prescribed textbook for NSEB, the following resources are recommended for preparation:</p>
+                <ul class="syllabus-list">
+                    <li>NCERT Biology textbooks for Class 11 and 12</li>
+                    <li>Biology by Campbell and Reece</li>
+                    <li>Objective Biology by Dinesh</li>
+                    <li>Problems in Biology by AA Pinsky</li>
+                    <li>Previous years' NSEB and INBO question papers</li>
+                    <li>International Biology Olympiad theoretical and practical tests</li>
+                    <li>Biology Olympiad Handbook by Science Olympiad Foundation</li>
+                    <li>Essentials of Genetics by William S. Klug</li>
+                    <li>Plant Physiology by Taiz and Zeiger</li>
+                    <li>Human Physiology by Vander's</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cutoff Section -->
+    <section class="section cutoff" id="cutoff">
+        <div class="section-title">
+            <h2>Previous Year Cutoffs</h2>
+            <p>Minimum marks required to qualify for next stages</p>
+        </div>
+        <table class="cutoff-table">
+            <thead>
+                <tr>
+                    <th>Year</th>
+                    <th>Qualification for INBO</th>
+                    <th>Minimum Marks (Class 12)</th>
+                    <th>Minimum Marks (Class 11)</th>
+                    <th>Minimum Marks (Class 10)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>2022</td>
+                    <td>Top 1% of candidates</td>
+                    <td>78</td>
+                    <td>65</td>
+                    <td>58</td>
+                </tr>
+                <tr>
+                    <td>2021</td>
+                    <td>Top 1% of candidates</td>
+                    <td>75</td>
+                    <td>62</td>
+                    <td>55</td>
+                </tr>
+                <tr>
+                    <td>2020</td>
+                    <td>Top 1% of candidates</td>
+                    <td>80</td>
+                    <td>68</td>
+                    <td>60</td>
+                </tr>
+                <tr>
+                    <td>2019</td>
+                    <td>Top 1% of candidates</td>
+                    <td>77</td>
+                    <td>64</td>
+                    <td>57</td>
+                </tr>
+                <tr>
+                    <td>2018</td>
+                    <td>Top 1% of candidates</td>
+                    <td>74</td>
+                    <td>61</td>
+                    <td>54</td>
+                </tr>
+            </tbody>
+        </table>
+        <div style="margin-top: 2rem; text-align: center;">
+            <p><strong>Note:</strong> Cutoffs vary each year depending on the difficulty level of the exam and overall performance of candidates. The above data is indicative and subject to change.</p>
+        </div>
+    </section>
+
+    <!-- Timeline Section -->
+    <section class="section" id="timeline">
+        <div class="section-title">
+            <h2>Olympiad Timeline</h2>
+            <p>Important dates and stages of the Biology Olympiad program</p>
+        </div>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>NSEB Examination</h3>
+                    <p>The first stage of the Biology Olympiad program. Conducted at various centers across India in November.</p>
+                </div>
+                <div class="timeline-date">November</div>
+                <div class="timeline-circle"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Result Declaration</h3>
+                    <p>NSEB results are typically declared in January. Top 1% of students qualify for the next stage (INBO).</p>
+                </div>
+                <div class="timeline-date">January</div>
+                <div class="timeline-circle"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>INBO Examination</h3>
+                    <p>Indian National Biology Olympiad conducted at HBCSE, Mumbai in February. Theoretical and practical tests.</p>
+                </div>
+                <div class="timeline-date">February</div>
+                <div class="timeline-circle"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>OCSC Selection</h3>
+                    <p>Top performers in INBO are selected for Orientation Cum Selection Camp (OCSC) held at HBCSE during April-May.</p>
+                </div>
+                <div class="timeline-date">April-May</div>
+                <div class="timeline-circle"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>Pre-Departure Training</h3>
+                    <p>Intensive training program for the selected team members before the International Biology Olympiad.</p>
+                </div>
+                <div class="timeline-date">June</div>
+                <div class="timeline-circle"></div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-content">
+                    <h3>IBO Participation</h3>
+                    <p>The 4-member Indian team participates in the International Biology Olympiad held in July at the host country.</p>
+                </div>
+                <div class="timeline-date">July</div>
+                <div class="timeline-circle"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Resources Section -->
+    <section class="section resources" id="resources">
+        <div class="section-title">
+            <h2>Study Resources</h2>
+            <p>Recommended materials for NSEB preparation</p>
+        </div>
+        <div class="resource-cards">
+            <div class="resource-card">
+                <div class="resource-img">
+                    <img src="https://images.unsplash.com/photo-1589998059171-988d887df646?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1476&q=80" alt="NCERT Books">
+                </div>
+                <div class="resource-content">
+                    <h3>NCERT Textbooks</h3>
+                    <p>Class 11 and 12 NCERT Biology textbooks form the foundation for NSEB preparation. Thorough understanding of concepts is essential.</p>
+                    <a href="https://ncert.nic.in/textbook.php" class="resource-link" target="_blank">Download NCERT Books <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-img">
+                    <img src="https://images.unsplash.com/photo-1544717305-2782549b5136?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1374&q=80" alt="Campbell Biology">
+                </div>
+                <div class="resource-content">
+                    <h3>our resoursec</h3>
+                    <p>The comprehensive reference books for in-depth understanding of biological concepts. Essential for advanced preparation.</p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSe2cTImlWNorYlfWtyRc2nPXX1PgtcW0Xuo3IoulBcuxlm9KQ/viewform?usp=sharing&ouid=111569093698559926642" class="resource-link" target="_blank">View Book Details <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+            <div class="resource-card">
+                <div class="resource-img">
+                    <img src="https://images.unsplash.com/photo-1456513080510-7bf3a84b82f8?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1373&q=80" alt="Previous Papers">
+                </div>
+                <div class="resource-content">
+                    <h3>Previous Year Papers</h3>
+                    <p>Solving past NSEB and INBO question papers helps understand the exam pattern and difficulty level.</p>
+                    <a href="https://docs.google.com/document/d/1m0cde0edKh5SU6XaHYSURt_xautrflg5uaK_7uhhW6Q/edit?usp=sharing" class="resource-link" target="_blank">Download Papers <i class="fas fa-external-link-alt"></i></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section faq" id="faq">
+        <div class="section-title">
+            <h2>Frequently Asked Questions</h2>
+            <p>Common queries about NSEB answered</p>
+        </div>
+        <div class="faq-container">
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What is the exam pattern of NSEB?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>NSEB is a 2-hour examination consisting of multiple-choice questions. The paper typically has 60-80 questions carrying 1-3 marks each, with negative marking for wrong answers. The questions test conceptual understanding, analytical ability, and application of biological knowledge.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>How should I prepare for NSEB?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Effective preparation strategies include:
+                        <ul>
+                            <li>Thorough study of NCERT textbooks (Class 11 & 12)</li>
+                            <li>Solving previous years' question papers</li>
+                            <li>Practicing analytical and application-based questions</li>
+                            <li>Referring to advanced books like Campbell Biology</li>
+                            <li>Developing strong fundamentals in all biology topics</li>
+                            <li>Time management practice through mock tests</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What are the benefits of participating in NSEB?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Participating in NSEB offers several benefits:
+                        <ul>
+                            <li>Opportunity to represent India at International Biology Olympiad</li>
+                            <li>Enhancement of problem-solving and analytical skills</li>
+                            <li>Exposure to advanced biological concepts beyond school curriculum</li>
+                            <li>Recognition and certificates that add value to academic profile</li>
+                            <li>Interaction with like-minded students and experts in the field</li>
+                            <li>Potential scholarships and academic opportunities</li>
+                        </ul>
+                    </p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>Is there any registration fee for NSEB?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Yes, there is a nominal registration fee for NSEB which varies slightly each year. For the current year, the fee is ₹200 per student. However, students from SC/ST and economically disadvantaged backgrounds may request fee waiver through their school authorities.</p>
+                </div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question">
+                    <span>What happens after qualifying NSEB?</span>
+                    <i class="fas fa-chevron-down"></i>
+                </div>
+                <div class="faq-answer">
+                    <p>Top 1% of NSEB qualifiers are eligible to appear for the Indian National Biology Olympiad (INBO). INBO consists of theoretical and practical examinations. Top performers in INBO are selected for Orientation Cum Selection Camp (OCSC) at HBCSE, Mumbai. After rigorous training at OCSC, the final 4-member team is selected to represent India at the International Biology Olympiad (IBO).</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section contact" id="contact">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Get in touch for more information</p>
+        </div>
+        <div class="contact-info">
+            <div class="contact-card">
+                <i class="fas fa-map-marker-alt"></i>
+                <h3>Address</h3>
+                <p>IAPT Office, I.I.T. Campus, Powai, Mumbai - 400076, Maharashtra, India</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-phone-alt"></i>
+                <h3>Phone</h3>
+                <p>+91-22-2576-4149</p>
+                <p>+91-22-2576-4150</p>
+            </div>
+            <div class="contact-card">
+                <i class="fas fa-envelope"></i>
+                <h3>Email</h3>
+                <p>iapt@iapt.org.in</p>
+                <p>nseb@iapt.org.in</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h3>About NSEB</h3>
+                <p>The National Standard Examination in Biology (NSEB) is the first stage of selection of students in the Biology Olympiad Programme in India, organized by IAPT.</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="footer-col">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="#about"><i class="fas fa-chevron-right"></i> About NSEB</a></li>
+                    <li><a href="#eligibility"><i class="fas fa-chevron-right"></i> Eligibility</a></li>
+                    <li><a href="#syllabus"><i class="fas fa-chevron-right"></i> Syllabus</a></li>
+                    <li><a href="#cutoff"><i class="fas fa-chevron-right"></i> Cutoff</a></li>
+                    <li><a href="#resources"><i class="fas fa-chevron-right"></i> Resources</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h3>Related Links</h3>
+                <ul class="footer-links">
+                    <li><a href="https://www.iapt.org.in/" target="_blank"><i class="fas fa-chevron-right"></i> IAPT Official</a></li>
+                    <li><a href="https://www.hbcse.tifr.res.in/" target="_blank"><i class="fas fa-chevron-right"></i> HBCSE</a></li>
+                    <li><a href="https://www.ibo-info.org/" target="_blank"><i class="fas fa-chevron-right"></i> IBO Official</a></li>
+                    <li><a href="https://ncert.nic.in/" target="_blank"><i class="fas fa-chevron-right"></i> NCERT</a></li>
+                    <li><a href="https://www.education.gov.in/" target="_blank"><i class="fas fa-chevron-right"></i> MHRD</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; all right reserved to INFOMO EDUCATION. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+            mobileMenuBtn.innerHTML = navMenu.classList.contains('active') ? 
+                '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('#nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+                mobileMenuBtn.innerHTML = '<i class="fas fa-bars"></i>';
+            });
+        });
+
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Tab functionality
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                const tabId = btn.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabBtns.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                btn.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // FAQ accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const faqItem = question.parentElement;
+                faqItem.classList.toggle('active');
+            });
+        });
+
+        // Scroll to top button
+        const scrollTopBtn = document.getElementById('scroll-top');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                scrollTopBtn.classList.add('active');
+            } else {
+                scrollTopBtn.classList.remove('active');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Timeline animation on scroll
+        const timelineItems = document.querySelectorAll('.timeline-item');
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        timelineItems.forEach(item => {
+            observer.observe(item);
+        });
+
+        // Preloader (optional)
+        window.addEventListener('load', () => {
+            document.body.classList.add('loaded');
+        });
+    </script>
+</body>
+</html>
