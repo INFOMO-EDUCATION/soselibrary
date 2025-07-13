@@ -1,0 +1,798 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASOSE, Sector II, Rohini - Notice Board</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f8f9ff 0%, #eef2ff 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        /* Header with Colorful Gradient */
+        header {
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ff6b6b);
+            color: white;
+            padding: 20px 30px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.3);
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+            animation: gradientShift 8s infinite alternate;
+        }
+        
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 100% 50%; }
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.2), transparent);
+            transform: rotate(30deg);
+            animation: shine 4s infinite;
+        }
+        
+        @keyframes shine {
+            0% { transform: rotate(30deg) translateX(-100%); }
+            100% { transform: rotate(30deg) translateX(100%); }
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo-icon {
+            font-size: 36px;
+            margin-right: 15px;
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255,255,255,0.7);
+            animation: pulse 2s infinite alternate;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            100% { transform: scale(1.1); }
+        }
+        
+        .logo-text h1 {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .logo-text p {
+            font-size: 18px;
+            opacity: 0.95;
+            margin-top: 5px;
+            font-weight: 500;
+        }
+        
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+        
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 50px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav a:hover, nav a.active {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+        }
+        
+        nav a i {
+            font-size: 20px;
+        }
+        
+        /* Notice Board with Colorful Sections */
+        .notice-board {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .notice-section {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+            transition: all 0.4s ease;
+            transform: translateY(0);
+        }
+        
+        .notice-section:hover {
+            transform: translateY(-10px) rotate(1deg);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        /* Different colors for each section */
+        .section-header.book {
+            background: linear-gradient(45deg, #3498db, #1e88e5);
+        }
+        
+        .section-header.academic {
+            background: linear-gradient(45deg, #e74c3c, #c0392b);
+        }
+        
+        .section-header.library {
+            background: linear-gradient(45deg, #e84393, #d63031);
+        }
+        
+        .section-header.online {
+            background: linear-gradient(45deg, #f39c12, #e67e22);
+        }
+        
+        .section-header.opportunities {
+            background: linear-gradient(45deg, #9b59b6, #8e44ad);
+        }
+        
+        .section-header {
+            color: white;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .section-header::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            transform: translateX(-100%);
+            animation: shimmer 3s infinite;
+        }
+        
+        @keyframes shimmer {
+            100% { transform: translateX(100%); }
+        }
+        
+        .section-header i {
+            font-size: 28px;
+            z-index: 1;
+            animation: spin 15s infinite linear;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .section-header h2 {
+            font-size: 24px;
+            font-weight: 700;
+            z-index: 1;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .notice-list {
+            padding: 25px;
+            background: linear-gradient(to bottom, #f8f9ff, #f0f4ff);
+        }
+        
+        .notice-item {
+            padding: 18px 15px;
+            margin: 10px 0;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            background: white;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .notice-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+        }
+        
+        .notice-item i {
+            font-size: 22px;
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            color: white;
+        }
+        
+        /* Different icon colors for each section */
+        .book .notice-item i { background: #3498db; }
+        .academic .notice-item i { background: #e74c3c; }
+        .library .notice-item i { background: #e84393; }
+        .online .notice-item i { background: #f39c12; }
+        .opportunities .notice-item i { background: #9b59b6; }
+        
+        .notice-item a {
+            color: #2d3748;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 17px;
+            transition: all 0.3s ease;
+            flex-grow: 1;
+        }
+        
+        .notice-item:hover a {
+            color: #1a73e8;
+        }
+        
+        .date-badge {
+            background: #ebf8ff;
+            color: #3182ce;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: 600;
+            display: inline-block;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+        }
+        
+        /* Highlight with Colorful Animation */
+        .highlight {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            border-radius: 20px;
+            padding: 30px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+            animation: highlightPulse 3s infinite alternate;
+        }
+        
+        @keyframes highlightPulse {
+            0% { transform: scale(1); box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3); }
+            100% { transform: scale(1.01); box-shadow: 0 12px 35px rgba(255, 107, 107, 0.4); }
+        }
+        
+        .highlight h3 {
+            color: #d63031;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 24px;
+            font-weight: 700;
+        }
+        
+        .highlight p {
+            color: #6a1b9a;
+            font-size: 18px;
+            line-height: 1.7;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        .highlight i {
+            font-size: 28px;
+            background: #d63031;
+            color: white;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            box-shadow: 0 5px 15px rgba(214, 48, 49, 0.4);
+        }
+        
+        /* Footer with Gradient */
+        footer {
+            background: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: white;
+            padding: 40px;
+            border-radius: 20px;
+            margin-top: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(38, 117, 252, 0.3);
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, #ff6b6b, #3498db, #f39c12, #e84393);
+            animation: footerLine 6s infinite linear;
+        }
+        
+        @keyframes footerLine {
+            0% { background-position: 0 0; }
+            100% { background-position: 200% 0; }
+        }
+        
+        .footer-content {
+            max-width: 800px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .footer-content p {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            text-shadow: 0 1px 3px rgba(0,0,0,0.2);
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.9);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            font-size: 18px;
+            padding: 10px 20px;
+            border-radius: 50px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(5px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .footer-links a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .copyright {
+            margin-top: 30px;
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        
+        /* Floating Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+        
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(100vh) translateX(0) rotate(0deg); opacity: 0; }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% { transform: translateY(-100px) translateX(100px) rotate(360deg); opacity: 0; }
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(45deg, #ff6b6b, #ff8e53);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
+            z-index: 1000;
+            box-shadow: 0 6px 20px rgba(255, 107, 107, 0.4);
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 8px 25px rgba(255, 107, 107, 0.6);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 900px) {
+            header {
+                flex-direction: column;
+                text-align: center;
+                gap: 25px;
+            }
+            
+            .logo {
+                justify-content: center;
+            }
+            
+            nav ul {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .notice-board {
+                grid-template-columns: 1fr;
+            }
+            
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 50px;
+                height: 50px;
+                font-size: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Floating Particles Background -->
+        <div class="particles" id="particles"></div>
+        
+        <header>
+            <div class="logo">
+                <div class="logo-icon">
+                    <i class="fas fa-school"></i>
+                </div>
+                <div class="logo-text">
+                    <h1>ASOSE, Sector II, Rohini</h1>
+                    <p>Official Notice Board</p>
+                </div>
+            </div>
+            
+            <nav>
+                <ul>
+                    <li><a href="main.html" class="active"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="main.html#subjects"><i class="fas fa-book-open"></i> Subjects</a></li>
+                    <li><a href=""><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="main.html#contact"><i class="fas fa-envelope"></i> Contact</a></li>
+                </ul>
+            </nav>
+        </header>
+        
+        <main>
+            <div class="highlight">
+                <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 20px;">
+                    <i class="fas fa-bullhorn"></i>
+                    <h3>Important Announcement</h3>
+                </div>
+                <p>Time table for further classes after summer vacation has been published. All students are requested to check the schedule and attend classes regularly. The schedule includes special workshops and skill development sessions.</p>
+                <div class="date-badge">Published: July 13, 2025</div>
+                <a href="https://drive.google.com/file/d/1W7DR1EYcBalYto-WUDXlLzEW6ANP3LN3/view?usp=sharing">click here</a>
+            </div>
+            
+            <div class="notice-board">
+                <div class="notice-section book">
+                    <div class="section-header book">
+                        <i class="fas fa-book"></i>
+                        <h2>Book Reviews</h2>
+                    </div>
+                    <div class="notice-list">
+                        <div class="notice-item">
+                            <i class="fas fa-book"></i>
+                            <a href="#"> StudentCompanions</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-newspaper"></i>
+                            <a href="#">e-Magazine</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-book-open"></i>
+                            <a href="#">Dictionary</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-star"></i>
+                            <a href="#">Top Picks</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notice-section academic">
+                    <div class="section-header academic">
+                        <i class="fas fa-graduation-cap"></i>
+                        <h2>Academic Resources</h2>
+                    </div>
+                    <div class="notice-list">
+                        <div class="notice-item">
+                            <i class="fas fa-globe"></i>
+                            <a href="#">e-Resources</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-file-alt"></i>
+                            <a href="#">Policies</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-images"></i>
+                            <a href="#">Gallery</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-trophy"></i>
+                            <a href="#">Achievements</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notice-section library">
+                    <div class="section-header library">
+                        <i class="fas fa-book-reader"></i>
+                        <h2>Library & Digital</h2>
+                    </div>
+                    <div class="notice-list">
+                        <div class="notice-item">
+                            <i class="fas fa-hub"></i>
+                            <a href="https://diksha.gov.in/">Diksha</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-book"></i>
+                            <a href="https://ncert.nic.in/textbook.php">NCERT Books</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-file-download"></i>
+                            <a href="https://edustud.nic.in/edu/supportmaterialnew.html">DOE Support Material</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-headphones"></i>
+                            <a href="https://ciet.ncert.gov.in/audio-books">NCERT Audio Books</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-child"></i>
+                            <a href="https://egyankosh.ac.in/">eGYANKOSH</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notice-section online">
+                    <div class="section-header online">
+                        <i class="fas fa-laptop-code"></i>
+                        <h2>Online Resources</h2>
+                    </div>
+                    <div class="notice-list">
+                        <div class="notice-item">
+                            <i class="fas fa-book-reader"></i>
+                            <a href="#">Story Line Online</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-digital-tachograph"></i>
+                            <a href="https://ndl.iitkgp.ac.in/">National Digital Library</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-university"></i>
+                            <a href="https://www.education.gov.in/">Ministry of Education</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-file-pdf"></i>
+                            <a href="https://docs.google.com/document/d/10kmR5RV7NgFvDt5dzxC7871-uwGZnzNUrgwUOBWHMT4/edit?usp=sharing">CBSE Sample Question Paper</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-video"></i>
+                            <a href="#">Educational Videos</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="notice-section opportunities">
+                    <div class="section-header opportunities">
+                        <i class="fas fa-briefcase"></i>
+                        <h2>Opportunities</h2>
+                    </div>
+                    <div class="notice-list">
+                        <div class="notice-item">
+                            <i class="fas fa-briefcase"></i>
+                            <a href="https://docs.google.com/document/d/1nz1Nq2wKIhH9CbIhhFavJ58We1d0Jj_HQ0iGLEMqAYo/edit?usp=sharing">CAREER OPPUTUNITIES AND RESEARCH</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-laptop"></i>
+                            <a href="#">Free e-Learning Tools</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <a href="https://swayam.gov.in/">SWAYAM</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-cloud"></i>
+                            <a href="#">ePathshala</a>
+                        </div>
+                        <div class="notice-item">
+                            <i class="fas fa-medal"></i>
+                            <a href="#">Scholarships</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <footer>
+            <div class="footer-content">
+                <p>ASOSE, Sector II, Rohini - Committed to Excellence in Education</p>
+                
+                <div class="footer-links">
+                    <a href="#"><i class="fas fa-info-circle"></i> About Us</a>
+                    <a href="#"><i class="fas fa-phone-alt"></i> Contact</a>
+                    <a href="#"><i class="fas fa-lock"></i> Privacy Policy</a>
+                    <a href="#"><i class="fas fa-file-contract"></i> Terms of Use</a>
+                    <a href="#"><i class="fas fa-sitemap"></i> Sitemap</a>
+                </div>
+                
+                <div class="copyright">
+                    &copy; 2025 ASOSE, Sector II, Rohini. All Rights Reserved.
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Back to Top Button -->
+    <div class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script>
+        // Create colorful floating particles
+        function createParticles() {
+            const container = document.getElementById('particles');
+            const colors = ['#ff6b6b', '#3498db', '#f39c12', '#e84393', '#9b59b6'];
+            
+            for (let i = 0; i < 25; i++) {
+                const particle = document.createElement('div');
+                particle.classList.add('particle');
+                
+                // Random size
+                const size = Math.random() * 30 + 10;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                
+                // Random position
+                particle.style.left = `${Math.random() * 100}%`;
+                
+                // Random color
+                const color = colors[Math.floor(Math.random() * colors.length)];
+                particle.style.backgroundColor = color;
+                
+                // Random animation duration
+                const duration = Math.random() * 20 + 10;
+                particle.style.animationDuration = `${duration}s`;
+                
+                // Random delay
+                const delay = Math.random() * 5;
+                particle.style.animationDelay = `${delay}s`;
+                
+                container.appendChild(particle);
+            }
+        }
+        
+        // Back to top button functionality
+        const backToTop = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTop.classList.add('visible');
+            } else {
+                backToTop.classList.remove('visible');
+            }
+        });
+        
+        backToTop.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Notice item click effect
+        document.querySelectorAll('.notice-item').forEach(item => {
+            item.addEventListener('click', function() {
+                // Add animation effect
+                this.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    this.style.transform = '';
+                }, 300);
+                
+                // Create ripple effect
+                const ripple = document.createElement('div');
+                ripple.style.position = 'absolute';
+                ripple.style.borderRadius = '50%';
+                ripple.style.backgroundColor = 'rgba(255,255,255,0.5)';
+                ripple.style.transform = 'scale(0)';
+                ripple.style.animation = 'ripple 0.6s linear';
+                
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height) * 1.5;
+                
+                ripple.style.width = `${size}px`;
+                ripple.style.height = `${size}px`;
+                ripple.style.left = `${rect.width/2 - size/2}px`;
+                ripple.style.top = `${rect.height/2 - size/2}px`;
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+                
+                // Get the item name
+                const itemName = this.querySelector('a').textContent;
+                console.log(`Navigating to: ${itemName}`);
+            });
+        });
+        
+        // Initialize particles
+        createParticles();
+        
+        // Add dynamic date
+        const now = new Date();
+        const options = { year: 'numeric', month: 'long', day: 'numeric' };
+        const dateString = now.toLocaleDateString('en-US', options);
+        document.querySelector('.date-badge').textContent = `Published: ${dateString}`;
+    </script>
+</body>
+</html>
